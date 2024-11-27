@@ -44,7 +44,7 @@ print("Sinu kiirus oli " + str(kiirus) + " km/h")
 
 #7
 
-N1, N2, N3, N4, N5 = int(input('Введите число 1')), int(input('Введите число 2')), int(input('Введите число 3')), int(input('Введите число 4')), int(input('Введите число 5'))
+N1, N2, N3, N4, N5 = float(input('Введите число 1')), float(input('Введите число 2')), float(input('Введите число 3')), float(input('Введите число 4')), float(input('Введите число 5'))
 print((N1 + N2 + N3 + N4 + N5) / 5, "среднее")
 
 #8
@@ -53,7 +53,7 @@ print('    @..@\n   (----)\n  ( \\__/ )\n  ^^ «» ^^  ')
 
 #9 
 print('Вычисляем периметр треугольника введи все данные')
-A, B, C = int(input('A')), int(input('B')), int(input('B'))
+A, B, C = float(input('A')), float(input('B')), float(input('B'))
 print('P = ',A + B + C)
 
 #10
