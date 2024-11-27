@@ -30,8 +30,8 @@ from math import *
 # print(round(d, 2))
 
 #5
-N = int(input("Введите N"))
-M = int(input("Введите M"))
+N = float(input("Введите N"))
+M = float(input("Введите M"))
 S = N*M
 print(S, 'Длинна прямоугольного участка')
 
