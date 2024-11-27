@@ -1,6 +1,7 @@
 from calendar import *
 from datetime import *
-
+from random import *
+from math import *
 #1
 #Функции day(), month(), year() используются для получения параметров дня, месяца и года из класса date.
 #Вычислите, сколько дней осталось до конца месяца и до конца года.
@@ -38,7 +39,19 @@ print(answer0, answer1, answer2, answer3)
 #Найдите площадь квадрата, периметр квадрата, площадь круга, периметр круга и выведите их на экран.
 
 try: # всё ок
-    R = float(input('enter R of circle'))
+    R=float(input('enter R of circle'))
     Sk=pi*R**2
+    Lk=2*pi*R
+    Skv=(2*R)**2
+    Lkv=2*R*4
+    print(f'''ringi pindala on {Sk}\nRingi umbermoot on {Lk}\nRuudu pindala on
+            on {Skv}\nRuudu umbermoot on {Lkv}''')
 except: # что-то не правильно
     print('error')
+R=round(random()*100) #0,0........1,0
+Sk=pi*R**2
+Lk=2*pi*R
+Skv=(2*R)**2
+Lkv=2*R*4
+print(f'''ringi pindala on {Sk}\nRingi umbermoot on {Lk}\nRuudu pindala on
+          on {Skv}\nRuudu umbermoot on {Lkv}''')
