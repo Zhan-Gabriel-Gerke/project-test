@@ -86,3 +86,9 @@ text1UP = text1.upper()
 text2UP = text2.upper()
 print(text1UP, text2UP)
 
+#7
+firstside_of_rectangle = float(input("enter first side of rectangle"))
+secondside_of_rectangle = float(input("enter second side of rectangle"))
+P_of_rectangle = (firstside_of_rectangle + secondside_of_rectangle) * 2
+S_of_rectangle = firstside_of_rectangle * secondside_of_rectangle
+print(f'P = {P_of_rectangle}, S = {secondside_of_rectangle}')
