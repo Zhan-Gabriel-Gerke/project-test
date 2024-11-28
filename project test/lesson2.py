@@ -69,3 +69,20 @@ killkollLW, killadikollLW = 'kill-koll ', 'killadi-koll '
 killkollUP, killadikollUP = killkollLW.capitalize(), killadikollLW.capitalize()
 print(killkollUP * 2, killadikollUP, killkollUP * 2, killadikollUP, killkollUP * 3)
 print(killkollUP)
+
+#6
+text1 = """ Rong see sõitis tsuhh tsuhh tsuhh,
+            piilupart oli rongijuht.
+            Rattad tegid rat tat taa,
+            rat tat taa ja tat tat taa.
+            Aga seal rongi peal,
+            kas sa tead, kes olid seal?"""
+text2 = """ Rong see sõitis tuut tuut tuut,
+            piilupart oli rongijuht.
+            Rattad tegid kill koll koll,
+            kill koll koll ja kill koll kill."""
+
+text1UP = text1.upper()
+text2UP = text2.upper()
+print(text1UP, text2UP)
+
