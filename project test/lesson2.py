@@ -98,3 +98,10 @@ fuel = float(input('enter how many liters did you use?'))
 distance = float(input('enter how many kilometrs did you pass'))
 average_expense = (fuel / distance) * 100
 print(f'average expense for 100 km {average_expense} Liters')
+
+#9
+average_speed_of_person = 29.9
+timeminutes = float(input('enter how many minutes'))
+distance_for_minuter = (average_speed_of_person / 60) * timeminutes
+print(f'for {timeminutes} minutes you can pass {round(distance_for_minuter, 1)} of kilometrs')
+
