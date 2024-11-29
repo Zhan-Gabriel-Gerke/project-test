@@ -1,5 +1,6 @@
 from calendar import *
 from datetime import *
+from msilib import AMD64
 from random import *
 from math import *
 #1
@@ -87,21 +88,45 @@ text2UP = text2.upper()
 print(text1UP, text2UP)
 
 #7
-firstside_of_rectangle = float(input("enter first side of rectangle"))
-secondside_of_rectangle = float(input("enter second side of rectangle"))
-P_of_rectangle = (firstside_of_rectangle + secondside_of_rectangle) * 2
-S_of_rectangle = firstside_of_rectangle * secondside_of_rectangle
-print(f'P = {P_of_rectangle}, S = {secondside_of_rectangle}')
+try:
+    firstside_of_rectangle = float(input("enter first side of rectangle"))
+    secondside_of_rectangle = float(input("enter second side of rectangle"))
+    P_of_rectangle = (firstside_of_rectangle + secondside_of_rectangle) * 2
+    S_of_rectangle = firstside_of_rectangle * secondside_of_rectangle
+    print(f'P = {P_of_rectangle}, S = {secondside_of_rectangle}')
+except:
+    print('error')
 
 #8
-fuel = float(input('enter how many liters did you use?'))
-distance = float(input('enter how many kilometrs did you pass'))
-average_expense = (fuel / distance) * 100
-print(f'average expense for 100 km {average_expense} Liters')
-
+try:
+    fuel = float(input('enter how many liters did you use?'))
+    distance = float(input('enter how many kilometrs did you pass'))
+    average_expense = (fuel / distance) * 100
+    print(f'average expense for 100 km {average_expense} Liters')
+except:
+    print('error')
 #9
-average_speed_of_person = 29.9
-timeminutes = float(input('enter how many minutes'))
-distance_for_minuter = (average_speed_of_person / 60) * timeminutes
-print(f'for {timeminutes} minutes you can pass {round(distance_for_minuter, 1)} of kilometrs')
-
+try:
+    average_speed_of_person = 29.9
+    timeminutes = float(input('enter how many minutes'))
+    distance_for_minuter = (average_speed_of_person / 60) * timeminutes
+    print(f'for {timeminutes} minutes you can pass {round(distance_for_minuter, 1)} of kilometrs')
+except:
+    print('error')
+#10
+try:
+    time_on_clock = int(input('enter how many minuter (only integers)'))
+    time_on_clock_hours = time_on_clock / 60
+    time_on_clock_minutes = time_on_clock_hours % 60
+    if time_on_clock_hours > 23:
+    if time_on_clock > 60:
+        time_on_clock_hours = time_on_clock / 60
+        print(f'time now is 0 AM and {time_on_clock} minutes')
+    elif time_on_clock_hours >= 13:
+        type_of_time = 'PM'
+        time_on_clock_hours = time_on_clock_hours - 12  
+        print(f'time now is {time_on_clock_hours} hours {type_of_time} and {time_on_clock_minutes} minutes')
+    else:
+        print('error')
+except:
+    print('error')
