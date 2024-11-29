@@ -119,13 +119,15 @@ try:
     time_on_clock_hours = time_on_clock / 60
     time_on_clock_minutes = time_on_clock_hours % 60
     if time_on_clock_hours > 23:
+        print('you entered more that 24 h')
+        exit() # ending the program
     if time_on_clock > 60:
-        time_on_clock_hours = time_on_clock / 60
         print(f'time now is 0 AM and {time_on_clock} minutes')
+    elif time_on_clock_hours <= 12:
+        print(f'time now is {time_on_clock_hours} AM and {time_on_clock_minutes} minutes')
     elif time_on_clock_hours >= 13:
-        type_of_time = 'PM'
         time_on_clock_hours = time_on_clock_hours - 12  
-        print(f'time now is {time_on_clock_hours} hours {type_of_time} and {time_on_clock_minutes} minutes')
+        print(f'time now is {time_on_clock_hours} PM and {time_on_clock_minutes} minutes')
     else:
         print('error')
 except:
