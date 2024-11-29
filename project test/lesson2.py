@@ -92,3 +92,9 @@ secondside_of_rectangle = float(input("enter second side of rectangle"))
 P_of_rectangle = (firstside_of_rectangle + secondside_of_rectangle) * 2
 S_of_rectangle = firstside_of_rectangle * secondside_of_rectangle
 print(f'P = {P_of_rectangle}, S = {secondside_of_rectangle}')
+
+#8
+fuel = float(input('enter how many liters did you use?'))
+distance = float(input('enter how many kilometrs did you pass'))
+average_expense = (fuel / distance) * 100
+print(f'average expense for 100 km {average_expense} Liters')
