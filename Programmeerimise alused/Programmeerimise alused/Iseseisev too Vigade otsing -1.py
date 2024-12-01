@@ -4,6 +4,9 @@
 from math import * # тут местами слова поменяли
 print("Ruudu karakteristikud")
 a=float(input('Sisesta ruudu külje pikkus => ')) # тут float не было
+if a != 3:
+    print('sorry you can enter only 3')
+    exit()
 S=a**2
 print("Ruudu pindala", S)
 P=4*a
@@ -15,6 +18,9 @@ print()
 print("Ristküliku karakteristikud")# лишняя сокбка
 b=float(input("Sisesta ristküliku 1. külje pikkus => "))# float потерялся 
 c=float(input("Sisesta ristküliku 2. külje pikkus => "))# float потерялся
+if b != 5 and c != 4:
+    print('sorry you can enter only 5 and 4')
+    exit()
 S=b*c
 print('Ristküliku pindala', S)# ' не было
 P=2*(b+c) # * не было
@@ -24,6 +30,9 @@ print("Ristküliku diagonaal", round(di, 2)) # ) не было ну и 2 в ок
 print()
 print("Ringi karakteristikud")
 r=float(input('Sisesta ringi raadiusi pikkus => '))# float не было и много '
+if r != 10:
+    print('sorrt you can enter only 10')
+    exit()
 d=2*r# * не было
 print("Ringi läbimõõt", d)# , не было
 S=pi*r**2 # после pi () лишние, * не хватало для возведения в степерь
