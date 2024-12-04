@@ -1,3 +1,4 @@
+from random import *
 #1
 # nimi = input('What\'s your name?')
 # if nimi.isalpha() and nimi.isupper():
@@ -105,4 +106,55 @@ except:
     print('error ex6')
 #7
 try:
-    height
+    height7 = float(input('enter height'))
+    sex = input('enter your sex "M or W"')
+    if sex.upper() == 'M':
+        if height < 100:
+            print('very short')
+        elif height < 150:
+            print('short')
+        elif height < 175:
+            print('average')
+        elif height < 190:
+            print('long')
+        elif height < 220:
+            print('who are you ?')
+        else:
+            print('error')
+    elif sex.upeer() == 'W':
+        if height < 80:
+            print('very short')
+        elif height < 120:
+            print('short')
+        elif height < 150:
+            print('average')
+        elif height < 165:
+            print('long')
+        elif height < 200:
+            print('who are you ?')
+        else:
+            print('error')
+except:
+    print('error 7')
+
+#8
+try:
+    answerr = input('would you like to buy groceries "YES" or "NO"')
+    if answerr == "YES":
+        question1, question2, question3 = input('would you like to buy milk "YES" or "NO"'), input('would you like to buy bread "YES" or "NO"'), input('would you like to buy eggs "YES" or "NO"')
+        if question1.upper() == 'YES':
+            product1 = random.randint(1, 10)
+        if question2.upper() == 'YES':
+            product2 = random.randint(1, 10)
+        if question3.upper() == 'YES':
+            product3 = random.randint(1, 10)
+        total_groceries_price = product1 + product2 + product3
+        if product1 > 0:
+            print(f'milk {product1} + 22% tax = {product1 * 1.22} Euro')
+        if product1 > 0:
+            print(f'bread {product2} + 22% tax = {product2 * 1.22} Euro')
+        if product1 > 0:
+            print(f'eggs {product3} + 22% tax = {product3 * 1.22} Euro')
+        print(f'recepe total cost for groceries {total_groceries_price}')
+except:
+    ('error ex 8')
