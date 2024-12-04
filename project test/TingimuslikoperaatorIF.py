@@ -140,21 +140,21 @@ except:
 #8
 try:
     answerr = input('would you like to buy groceries "YES" or "NO"')
-    if answerr == "YES":
-        question1, question2, question3 = input('would you like to buy milk "YES" or "NO"'), input('would you like to buy bread "YES" or "NO"'), input('would you like to buy eggs "YES" or "NO"')
-        if question1.upper() == 'YES':
-            product1 = random.randint(1, 10)
-        if question2.upper() == 'YES':
-            product2 = random.randint(1, 10)
-        if question3.upper() == 'YES':
-            product3 = random.randint(1, 10)
+    if answerr.upper() == "YES":
+        question1, question2, question3 = input('1. would you like to buy milk "YES" or "NO"'), input('2. would you like to buy bread "YES" or "NO"'), input('3. would you like to buy eggs "YES" or "NO"')
+        if question1.upper() == "YES":
+            product1 = randint(1, 10)
+        if question2.upper() == "YES":
+            product2 = randint(1, 10)
+        if question3.upper() == "YES":
+            product3 = randint(1, 10)
         total_groceries_price = product1 + product2 + product3
         if product1 > 0:
             print(f'milk {product1} + 22% tax = {product1 * 1.22} Euro')
-        if product1 > 0:
+        if product2 > 0:
             print(f'bread {product2} + 22% tax = {product2 * 1.22} Euro')
-        if product1 > 0:
+        if product3 > 0:
             print(f'eggs {product3} + 22% tax = {product3 * 1.22} Euro')
         print(f'recepe total cost for groceries {total_groceries_price}')
 except:
-    ('error ex 8')
+    print('error ex 8')
