@@ -158,3 +158,31 @@ try:
         print(f'recepe total cost for groceries {total_groceries_price}')
 except:
     print('error ex 8')
+
+#9
+try:
+    AsideSquare, BsideSquare = float(input('Enter first lenght of square')), float(input('Enter second lenght of square'))
+    CsideSquare, DsideSquare = float(input('Enter third lenght of square')), float(input('Enter fourth lenght of square'))
+    if AsideSquare == BsideSquare and AsideSquare == CsideSquare and AsideSquare == DsideSquare:
+        print('all sides are equal')
+    else:
+        print('all sides aren\'t aqual')
+except:
+    print('error ex 9')
+
+#10
+try:
+    mathfun = input('Please enter math function which do you want to calculate "+, -, *, /"')
+    num1, num2 = float(input('enter first number')), float(input('enter seconf number'))
+    if mathfun == '+':
+        sumnum = num1 + num2
+    elif mathfun == '-':
+        sumnum = num1 - num2
+    elif mathfun == '*':
+        sumnum = num1 * num2
+    elif mathfun == '/' or ':':
+        sumnum = num1 / num2
+    else:
+        print('you wrote wrong math function')
+except:
+    print('error ex10')
