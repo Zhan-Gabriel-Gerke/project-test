@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>1fc4a767-f387-45f0-aa2b-702bab8a90fd</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Iseseisev too Vigade otsing -1.py</StartupFile>
+    <StartupFile>TingimuslikoperaatorIF.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -25,6 +25,9 @@
     <Compile Include="Tund 1 Funktsioonide print,input, float, int kasutamine.py" />
     <Compile Include="Praktiline too Lihtsad prgrammid.py" />
     <Compile Include="Iseseisev too Vigade otsing -1.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TingimuslikoperaatorIF.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
