@@ -188,23 +188,19 @@ try:
 except:
     print('error ex10')
 
-#11 Доделай потом
-# try:
-#     datebirth = input('Please enter you date of birth"yyyy-mm-dd"')
-#     # print(datebirth)
-#     todaydate = date.today()
-#     # print(todaydate)
-#     # birthyear = datebirth[0:4]
-#     # print(birthyear)
-#     ubelei = todaydate[0:4] - datebirth[0:4]
-#     print(ubelei)
-#     if ubelei % 5 == 0:
-#         print('юбилеййййй')
-#     else:
-#         print('не юбилей')
-# except:
-#     print('error ex 11')
-
+#11
+try:
+    datebirth = input('Please enter you date of birth"yyyy-mm-dd"')
+    todaydate = date.today()
+    strtodaydateYear, strdatebirthYear = str(todaydate)[0:4], str(datebirth)[0:4]
+    ubelei = float(strtodaydateYear) - float(strdatebirthYear)
+    print(ubelei)
+    if ubelei % 5 == 0:
+        print('юбилеййййй')
+    else:
+        print('не юбилей')
+except:
+    print('error ex 11')
 #12 
 try:
     price_for_product = float(input('Enter price for product in euro\'s'))
@@ -221,17 +217,29 @@ except:
 #13
 try:
     sex = input('enter your sex "M" or "W"')
-    if sex.upper == 'M':
+    if sex.upper() == 'M':
         age = int(input('Please enter your age'))
-        if age => 16 and age =< 18:
+        if age >= 16 and age <= 18:
             print('Welcome')
-        else:
-            print('Sorrt but no')
-    elif sex.upper == 'W':
+        elif age < 16:
+            print('Sorry you are too young though')
+        elif age > 18:
+            print('Sorry you are too old though')
+    elif sex.upper() == 'W':
         print('Sorry only mens')
     else:
         print('you wrote wrong answer')
 except:
     print('error ex 13')
 
-#14 
+# 14 
+try:
+    quantitiesOFpeople = int(input('Please enter quantities of people'))
+    sizeOFbus = int(input('Please enter how many seats does have buses'))
+    count = 0
+    while quantitiesOFpeople >= sizeOFbus:
+        quantitiesOFpeople = quantitiesOFpeople - sizeOFbus
+        count += 1
+    print(f'You will need {count + 1} buses and in the last bus will be {quantitiesOFpeople} people')
+except:
+    print('error ex 14')
