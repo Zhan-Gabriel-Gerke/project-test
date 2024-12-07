@@ -113,7 +113,7 @@ if yesORno.upper() == 'YES':
         x2Ex6 =(- bEx6 - math.sqrt(Dex6)) / (2 * aEx6)
         print(x1Ex6, x2Ex6)
     elif Dex6 == 0:
-        xEx6 = -bEx6 / 2 * a
+        xEx6 = -bEx6 / (2 * aEx6)
         print(xEx6)
     elif Dex6 < 0:
         print('net kornei')
