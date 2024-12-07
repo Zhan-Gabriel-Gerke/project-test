@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>1fc4a767-f387-45f0-aa2b-702bab8a90fd</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>TingimuslikoperaatorIF.py</StartupFile>
+    <StartupFile>Valiklaused (Ruutvorrand).py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,6 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Valiklaused %28Ruutvorrand%29.py" />
     <Compile Include="Programmeerimise_alused.py" />
     <Compile Include="Tund 1 Funktsioonide print,input, float, int kasutamine.py" />
     <Compile Include="Praktiline too Lihtsad prgrammid.py" />
