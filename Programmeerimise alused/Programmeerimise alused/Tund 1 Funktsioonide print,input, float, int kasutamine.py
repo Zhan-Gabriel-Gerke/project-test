@@ -7,7 +7,7 @@ nimi =input("Mis on sinu nimi? ").capitalize() #lower(), upper(), /
 print('Tere tulemast! Tervitan sind', nimi)
 print('Tere tulemast! Tervitan sind'+ nimi)
 try:
-    vanus=int(input"kui vana sa oled? ")
+    vanus=int(input("kui vana sa oled? "))
     print("Tere tulemast! Tervitan sind "+nimi+" Sa oled ",vanus,'aastat vana')
     print(f"Tere tulemast! Tervitan sind {nimi} Sa oled {vanus} aastat vana")
 except:

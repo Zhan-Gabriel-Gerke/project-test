@@ -1,4 +1,4 @@
-import math
+#import math
 from random import *
 count = 0
 try:
@@ -13,8 +13,7 @@ if levelofmath == 1:
     print('You chose lever easy (Only integer numbers)')
     for x in range(quantityofex):
         mathOperator = randint(1,2)
-        num1 = randint(1,100)
-        num2 = randint(1,100)
+        num1, num2 = randint(1,100), randint(1,100)
         if mathOperator == 1:
             print(f'Number 1: {num1}, Number 2: {num2}, Math operator "+"')
             try:
@@ -54,8 +53,7 @@ elif levelofmath == 2:
         print('error')
     for x in range(quantityofex):
         mathOperator = randint(1,4)
-        num1 = randint(100,1000)
-        num2 = randint(100,1000)
+        num1, num2 = randint(100,1000), randint(100,1000)
         if mathOperator == 1:
             print(f'Number 1: {num1}, Number 2: {num2}, Math operator "+"')
             try:
@@ -125,7 +123,40 @@ elif levelofmath == 3:
         quantityofex = int(input('Plese enter the quatity of exercise'))
     except:
         print('error')
-    print('3')
+#    for x in range(quantityofex):
+    num1, num2, num3, mathOperator = randint(100,1000), randint(100,1000), randint(100,1000), randint(1,4)
+    if mathOperator == 1:
+        print(f'{num1} : {num2} + {num3}')
+        rightanswer = round(num1 / num2 + num3, 2)
+        answer = float(input('Enter answer with two decimal places'))
+    elif mathOperator == 2:
+        print(f'{num1} * {num2} - {num3}')
+        rightanswer = round(num1 * num2 - num3, 2)
+        answer = float(input('Enter answer with two decimal places'))
+        
+    # try:
+    #     quantityofex = int(input('Plese enter the quatity of exercise'))
+    # except:
+    #     print('error')
+    # print()
+    # aEx3, bEx3, cEx3 = randint(1,15), randint(1,15), randint(1,15)
+    # print(f'quadratic level a = {aEx3}, b = {bEx3}, c = {cEx3}')
+    # Dex3 = (bEx3 ** 2) - 4 * aEx3 * cEx3
+    # D = float(input('Write D'))
+    # if Dex3 > 0:
+    #     x1Ex3 =(- bEx3 + math.sqrt(Dex3)) / (2 * aEx3)
+    #     x2Ex6 =(- bEx3 - math.sqrt(Dex3)) / (2 * aEx3)
+    # elif Dex3 == 0:
+    #     xEx6 = -bEx3 / (2 * aEx3)
+    # elif Dex3 < 0:
+    #     print('net kornei')
+    # else:
+    #     print('error ex6 D')
+    # if D == 0:
+    #     try:
+    #         answer = float(f'Enter X')
+    #     except:
+    #         print('error')
 else:
     print('error')
 print(count)
