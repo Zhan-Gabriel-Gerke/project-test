@@ -46,6 +46,8 @@ if levelofmath == 1:
                     print(f'Wrong, right answer was {rightanswer}')
             else:
                 print('Variable is empty')
+        else:
+            print('error mathOperator 1')
 elif levelofmath == 2:
     try:
         quantityofex = int(input('Plese enter the quatity of exercise'))
@@ -108,7 +110,7 @@ elif levelofmath == 2:
                 answer = None
                 answer = float(input('Please enter the answer with two decimal places '))
             except:
-                print('Only numbers. error 105 line')
+                print('Only numbers. error')
             if answer is not None:
                 rightanswer = round(num1 / num2, 2)
                 if rightanswer == answer:
@@ -118,22 +120,84 @@ elif levelofmath == 2:
                     print(f'Wrong, right answer was {rightanswer}')
             else:
                 print('Variable is empty')
+        else:
+            print('error mathOperator 2')
 elif levelofmath == 3:
     try:
         quantityofex = int(input('Plese enter the quatity of exercise'))
     except:
         print('error')
-#    for x in range(quantityofex):
-    num1, num2, num3, mathOperator = randint(100,1000), randint(100,1000), randint(100,1000), randint(1,4)
-    if mathOperator == 1:
-        print(f'{num1} : {num2} + {num3}')
-        rightanswer = round(num1 / num2 + num3, 2)
-        answer = float(input('Enter answer with two decimal places'))
-    elif mathOperator == 2:
-        print(f'{num1} * {num2} - {num3}')
-        rightanswer = round(num1 * num2 - num3, 2)
-        answer = float(input('Enter answer with two decimal places'))
-        
+    for x in range(quantityofex):
+        num1, num2, num3, mathOperator = randint(100,1000), randint(100,1000), randint(100,1000), randint(1,4)
+        if mathOperator == 1:
+            print(f'{num1} : {num2} + {num3}')
+            try:
+                answer = None
+                answer = float(input('Enter answer with two decimal places'))
+            except:
+                print('Only numbers, Error')
+            if answer is not None:
+                rightanswer = round(num1 / num2 + num3, 2)
+                if rightanswer == answer:
+                    print('You are right')
+                    count = count + 1
+                else:
+                    print(f'Wrong, right answer was {rightanswer}')
+            else:
+                print('Variable is empty')
+        elif mathOperator == 2:
+            print(f'{num1} * {num2} - {num3}')
+            try:
+                answer = None
+                answer = float(input('Enter answer with two decimal places'))
+            except:
+                print('Only numbers, Error')
+            if answer is not None:
+                rightanswer = round(num1 * num2 - num3, 2)
+                if rightanswer == answer:
+                    print('You are right')
+                    count = count + 1
+                else:
+                    print(f'Wrong, right answer was {rightanswer}')
+            else:
+                print('Variable is empty')
+        elif mathOperator == 3:
+            print(f'{num1} + {num2} ** {num3}')
+            try:
+                answer = None
+                answer = float(input('Enter answer with two decimal places'))
+            except:
+                print('Only numbers, Error')
+            if answer is not None:
+                rightanswer = round(num1 + num2 ** num3)
+                if rightanswer == answer:
+                    print('You are right')
+                    count = count + 1
+                else:
+                    print(f'Wrong, right answer was {rightanswer}')
+            else:
+                print('Variable is empty')
+                print('Only numbers, Error')
+        elif mathOperator == 4:
+            print(f'{num1} - {num2} ** {num3}')
+            try:
+                answer = None
+                answer = float(input('Enter answer with two decimal places'))
+            except:
+                print('Only numbers, Error')
+            if answer is not None:
+                rightanswer = round(num1 - num2 ** num3)
+                if rightanswer == answer:
+                    print('You are right')
+                    count = count + 1
+                else:
+                    print(f'Wrong, right answer was {rightanswer}')
+            else:
+                print('Variable is empty')
+        else:
+            print('error mathOperator 3')
+    else:
+        print('error levelofmath')
     # try:
     #     quantityofex = int(input('Plese enter the quatity of exercise'))
     # except:
@@ -161,4 +225,4 @@ else:
     print('error')
 print(count)
 grade = (count / quantityofex) * 100
-print(grade)
+print(f'{grade} %')
