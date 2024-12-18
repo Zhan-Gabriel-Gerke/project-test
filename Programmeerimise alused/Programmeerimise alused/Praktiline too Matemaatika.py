@@ -1,8 +1,7 @@
-#import math
 from random import *
 count = 0
 try:
-    levelofmath = int(input('Please enter lelvel complexity pf the math "1 - easy, 2 - medium, 3 - hard"'))
+    levelofmath = int(input('Please enter lelvel complexity of the math "1 - easy, 2 - medium, 3 - hard"'))
 except:
     print('error')
 if levelofmath == 1:
@@ -198,31 +197,16 @@ elif levelofmath == 3:
             print('error mathOperator 3')
     else:
         print('error levelofmath')
-    # try:
-    #     quantityofex = int(input('Plese enter the quatity of exercise'))
-    # except:
-    #     print('error')
-    # print()
-    # aEx3, bEx3, cEx3 = randint(1,15), randint(1,15), randint(1,15)
-    # print(f'quadratic level a = {aEx3}, b = {bEx3}, c = {cEx3}')
-    # Dex3 = (bEx3 ** 2) - 4 * aEx3 * cEx3
-    # D = float(input('Write D'))
-    # if Dex3 > 0:
-    #     x1Ex3 =(- bEx3 + math.sqrt(Dex3)) / (2 * aEx3)
-    #     x2Ex6 =(- bEx3 - math.sqrt(Dex3)) / (2 * aEx3)
-    # elif Dex3 == 0:
-    #     xEx6 = -bEx3 / (2 * aEx3)
-    # elif Dex3 < 0:
-    #     print('net kornei')
-    # else:
-    #     print('error ex6 D')
-    # if D == 0:
-    #     try:
-    #         answer = float(f'Enter X')
-    #     except:
-    #         print('error')
 else:
     print('error')
 print(count)
 grade = (count / quantityofex) * 100
 print(f'{grade} %')
+if grade < 60:
+    print('Your grade 2')
+elif grade < 75:
+    print('Your grade 3')
+elif grade < 90:
+    print('Your grade 4')
+else:
+    print('Your grade 5')
