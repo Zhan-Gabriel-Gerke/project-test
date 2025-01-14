@@ -48,25 +48,38 @@ for x in range(5):
 print(Name, 'Last name in the list')
 Names.sort()
 print(Names)
-YesorNo = None
-while YesorNo is None:
-    try:
-        YesorNo = input('Do you want change list "Yes or No"').upper()
-    except:
-        pass
-#    if YesorNo is not None:
-if YesorNo == 'YES' or 'Y' or 'YE' or 'ES' or '1' or 'TRUE' or '+':
+YorN = None
+while YorN is None:
+    AnswerYN = input('Do you want change list "Yes or No"').upper()
+    if len(AnswerYN) >= 1:
+        YorN = AnswerYN
+    else:
+        print('You didn\'n write ansver')
+if YorN == 'YES' or YorN == 'Y' or YorN == 'YE' or YorN == 'ES' or YorN == '1' or YorN == 'TRUE' or YorN == '+':
     print(Names)
     NumberOfName = None
+    ReplaceName = None
     while NumberOfName is None:
         try:
-            NumberOfName = int(input('Please enter the number of record which you want replace'))
-            ReplaceName = input('Please enter the name which you want add')
+            NumberOfName = int(input('''Please enter the number of 
+                                        record which you want replace
+                                        PS.  decrease for 1 1 '''.strip()))# спроси про пробелы
         except:
             print('ERROR Variable is empty')
             continue
-    Names.pop(NumberOfName + 1)
-    Names.insert(NumberOfName + 1, ReplaceName)
+    while ReplaceName is None:
+        try:
+            ReplaceNameTest = input('Please enter the name which you want add')
+        except:
+            print('ERROR Variable is empty')
+            continue
+        if len(ReplaceNameTest) >= 1:
+            ReplaceName = ReplaceNameTest
+    print(NumberOfName)
+    NumberOfName = NumberOfName - 1
+    print(NumberOfName)
+    Names.pop(NumberOfName)
+    Names.insert(NumberOfName, ReplaceName)
     print(Names, 'The list has been changed')
 else:
     print('OK')
