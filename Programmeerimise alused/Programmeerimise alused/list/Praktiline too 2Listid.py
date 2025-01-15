@@ -98,8 +98,9 @@ for x in range(quantitynames):
         print(opilasedWithoutDublicates)
 #2.3
 AgeList = ['10','18','20','25','29','30','38','40','65']
-
-#1 Marina's Solution
+print(max(AgeList), 'Max')
+print(min(AgeList), 'Min')
+# #1 Marina's Solution
 # vokaali = ['a', 'e', 'u', 'o', 'i']
 # konsanati="qwrtypsdfghjklzxcvbnm"
 # markid=string.punctuation #!"#$%&'()*+,-./:;
@@ -124,34 +125,78 @@ AgeList = ['10','18','20','25','29','30','38','40','65']
 #     print('Konsonanti',k)
 #     print('Markid',m)
 #     print('Tuhikud',t)
-#2 Marina's Solution
-nimed = []
-for i in range(5):
-    nimi = input(f'{i+1}.Nimi: ')
-    nimed.append(nimi)
-print('Enne sorteerimist:')
-print(nimed)
-nimed.sort()
-print('Sorteerimise parast:')
-print(nimed)
-print(f'Viimasena lisatud nimi on: {nimi}')
-v = input('Kas muudame nimeid?: ').lower()
-if v =='jah':
-    v=input('Nimi voi positsiion: N/P').upper()
-    if v=="P":
-        print('Sisesta nimi asukoht')
-        v=int(input())
-        uus_nimi = input('Uus nimi: ')
-        nimed[v-1]=uus_nimi
-        print(nimed)
+# #2 Marina's Solution
+# nimed = []
+# for i in range(5):
+#     nimi = input(f'{i+1}.Nimi: ')
+#     nimed.append(nimi)
+# print('Enne sorteerimist:')
+# print(nimed)
+# nimed.sort()
+# print('Sorteerimise parast:')
+# print(nimed)
+# print(f'Viimasena lisatud nimi on: {nimi}')
+# v = input('Kas muudame nimeid?: ').lower()
+# if v =='jah':
+#     v=input('Nimi voi positsiion: N/P').upper()
+#     if v=="P":
+#         print('Sisesta nimi asukoht')
+#         v=int(input())
+#         uus_nimi = input('Uus nimi: ')
+#         nimed[v-1]=uus_nimi
+#         print(nimed)
+#     else:
+#         print('Sisesta nimi')
+#         vana_nimi=input('Vana nimi: ')
+#         v=nimed.index(vana_nimi)
+#         uus_nimi = input('Uus nimi: ')
+#         nimed[v]=uus_nimi
+#     print(nimed)
+# #1
+# dubulta = list(set(nimed))
+# print(dubulta)
+# #2
+# dublta = []
+# for nimik in nimed:
+#     if nimi not in dublta:
+#         dublta.append(nimi)
+# print("Mitte korduv loetelu 2.variant")
+# print(dublta)
+
+# vanused = []
+# for i in range(7):
+#     vanus = int(input(f'{i+1}. Vanus: '))
+#     vanused.append(vanus)
+# print(f'Sisestatud vanused: {vanused}')
+# print(max(vanused))
+# print(min(vanused))
+# print(sum(vanused)/len(vanused)) #Average
+
+# #3
+# Vartused = []
+# read = int(input('Reade kogus: '))
+# for i in range(read):
+#     arv=int(input("Arv"))
+#     Vartused.append(arv)
+# print(Vartused)
+# s = input('Sumbol: ')
+# for vartus in Vartused:
+#     print(vartus*s)
+
+# print()
+
+#4
+YorN4 = None
+while YorN4 is None:
+    postindex = int(input('Enter your post index'))
+    if len(str(postindex)) == 5: # and postindex[0] != 0:
+        YorN4 = AnswerYN
     else:
-        print('Sisesta nimi')
-        vana_nimi=input('Vana nimi: ')
-        v=nimed.index(vana_nimi)
-        uus_nimi = input('Uus nimi: ')
-        nimed[v]=uus_nimi
-    print(nimed)
-#1
-dubulta = list(set(nimed))
-print(dubulta)
-#2
+        print('Wrong answer')
+city = ['Tallinn', 'Narva, Narva-Jõesuu', 'Kohtla-Järve', 'Ida-Virumaa, Lääne-Virumaa, Jõgevamaa', 'Tartu linn', 'Tartumaa, Põlvamaa, Võrumaa, Valgamaa', 'Viljandimaa, Järvamaa, Harjumaa, Raplamaa', 'Pärnumaa', 'Läänemaa, Hiiumaa, Saaremaa']
+dangercity = [1, 2, 3]
+#postindexlist = list(str(postindex))
+firstindexpostcode = int(postindex[0])
+print(city(postindexlist[0]))
+if postindex in dangercity:
+    print('Stay at home! Or Wear mask')
