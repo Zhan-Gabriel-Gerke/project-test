@@ -1,5 +1,7 @@
-﻿#1
-print('English Letters')
+﻿# for marina's solution
+import string
+#1 Mine
+print('English Alphabet')
 pfrace = None
 try:
     pfrace = input("enter phrace").upper()
@@ -34,7 +36,7 @@ else:
 #         countVowels+=1
 #     elif char in NonVowels:
 #         countNonVowels+=1
-#2
+#2 Mine Добавь чтобы можно было по имя вводить и менять а не только номер
 Names = []
 for x in range(5):
     Name = None
@@ -83,3 +85,62 @@ if YorN == 'YES' or YorN == 'Y' or YorN == 'YE' or YorN == 'ES' or YorN == '1' o
     print(Names, 'The list has been changed')
 else:
     print('OK')
+#2.2
+opilased = ['Juhan','Kati','Mario','Mario','Mati','Mati']
+opilasedWithoutDublicates = []
+quantitynames = len(opilased)
+print(opilased)
+for x in range(quantitynames):
+    if opilased[x] in opilasedWithoutDublicates:
+        pass
+    else:
+        opilasedWithoutDublicates.append(opilased[x])
+        print(opilasedWithoutDublicates)
+#2.3
+AgeList = ['10','18','20','25','29','30','38','40','65']
+
+#1 Marina's Solution
+vokaali = ['a', 'e', 'u', 'o', 'i']
+konsanati="qwrtypsdfghjklzxcvbnm"
+markid=string.punctuation #!"#$%&'()*+,-./:;
+while True:
+    v=k=m=t=0
+    tekst = input("Sisesta mingi tekst: ").lower()
+    if tekst.isdigit():
+        break
+    else:
+        tekst_list = list(tekst)
+        print(tekst_list)# 'p', 'r'
+        for taht in tekst_list:
+            if taht in vokaali:
+                v+=1
+            elif taht in konsanati:
+                k+=1
+            elif taht in markid:
+                m+=1
+            elif taht == " ":
+                t+=1
+    print('Vookali',v)
+    print('Konsonanti',k)
+    print('Markid',m)
+    print('Tuhikud',t)
+#2 Marina's Solution
+nimed = []
+for i in range(5):
+    nimi = input(f'{i+1}.Nimi: ')
+    nimed.append(nimi)
+print('Enne sorteerimist:')
+print(nimed)
+nimed.sort()
+print('Sorteerimise parast:')
+print(nimed())
+print(f'Viimasena lisatud nimi on: {nimi}')
+v = input('Kas muudame nimeid?: ').lower()
+if v =='jah':
+    v=input('Nimi voi positsiion: N/P').upper()
+    if v=="P":
+        print('Sisesta nimi asukoht')
+        v=int(input())
+        
+    else:
+        print('Sisesta nimi')
