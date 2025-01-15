@@ -100,30 +100,30 @@ for x in range(quantitynames):
 AgeList = ['10','18','20','25','29','30','38','40','65']
 
 #1 Marina's Solution
-vokaali = ['a', 'e', 'u', 'o', 'i']
-konsanati="qwrtypsdfghjklzxcvbnm"
-markid=string.punctuation #!"#$%&'()*+,-./:;
-while True:
-    v=k=m=t=0
-    tekst = input("Sisesta mingi tekst: ").lower()
-    if tekst.isdigit():
-        break
-    else:
-        tekst_list = list(tekst)
-        print(tekst_list)# 'p', 'r'
-        for taht in tekst_list:
-            if taht in vokaali:
-                v+=1
-            elif taht in konsanati:
-                k+=1
-            elif taht in markid:
-                m+=1
-            elif taht == " ":
-                t+=1
-    print('Vookali',v)
-    print('Konsonanti',k)
-    print('Markid',m)
-    print('Tuhikud',t)
+# vokaali = ['a', 'e', 'u', 'o', 'i']
+# konsanati="qwrtypsdfghjklzxcvbnm"
+# markid=string.punctuation #!"#$%&'()*+,-./:;
+# while True:
+#     v=k=m=t=0
+#     tekst = input("Sisesta mingi tekst: ").lower()
+#     if tekst.isdigit():
+#         break
+#     else:
+#         tekst_list = list(tekst)
+#         print(tekst_list)# 'p', 'r'
+#         for taht in tekst_list:
+#             if taht in vokaali:
+#                 v+=1
+#             elif taht in konsanati:
+#                 k+=1
+#             elif taht in markid:
+#                 m+=1
+#             elif taht == " ":
+#                 t+=1
+#     print('Vookali',v)
+#     print('Konsonanti',k)
+#     print('Markid',m)
+#     print('Tuhikud',t)
 #2 Marina's Solution
 nimed = []
 for i in range(5):
@@ -133,7 +133,7 @@ print('Enne sorteerimist:')
 print(nimed)
 nimed.sort()
 print('Sorteerimise parast:')
-print(nimed())
+print(nimed)
 print(f'Viimasena lisatud nimi on: {nimi}')
 v = input('Kas muudame nimeid?: ').lower()
 if v =='jah':
@@ -141,6 +141,17 @@ if v =='jah':
     if v=="P":
         print('Sisesta nimi asukoht')
         v=int(input())
-        
+        uus_nimi = input('Uus nimi: ')
+        nimed[v-1]=uus_nimi
+        print(nimed)
     else:
         print('Sisesta nimi')
+        vana_nimi=input('Vana nimi: ')
+        v=nimed.index(vana_nimi)
+        uus_nimi = input('Uus nimi: ')
+        nimed[v]=uus_nimi
+    print(nimed)
+#1
+dubulta = list(set(nimed))
+print(dubulta)
+#2
