@@ -9,7 +9,7 @@
             if len(IDkoodtest) == 11:
                 if IDkoodtest[0] in FirstNumber:
                    NumbersTest = IDkoodtest[1:3]
-                   NumbersTest = int(NumbersTest)# Тут проблема снизу на 13 сторке 37605030270
+                   NumbersTest = int(NumbersTest)# Тут проблема снизу на 13 сторке 37605030270 # Тут список в списке без цикла ищётся сделай переменную и норм будет 
                    if (NumbersTest >= 0 and NumbersTest < 26) or (NumbersTest >= 0 and NumbersTest < 100 and FirstNumber in FirstNumberstest):
                        NumbersTest = IDkoodtest[3:5]
                        NumbersTest = int(NumbersTest)                      
