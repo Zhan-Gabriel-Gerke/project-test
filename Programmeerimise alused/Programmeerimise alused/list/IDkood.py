@@ -1,27 +1,32 @@
-﻿IDkood = None
+﻿from datetime import date
+current_date = date.today()
+print(current_date)
+year, month, day = current_date.year, current_date.month, current_date.day
+print(year, month, day)
+IDkood = None
 FirstNumber = ['1','2','3','4','5','6']
 FirstNumbertest = ['1','2','3','4']
 Place = ['Kuressaare haigla', 'Tartu Ülikooli Naistekliinik', 'Ida-Tallinna keskhaigla, Pelgulinna sünnitusmaja (Tallinn)', 'Keila haigla', 'Rapla haigla, Loksa haigla, Hiiumaa haigla (Kärdla)', 'Ida-Viru keskhaigla (Kohtla-Järve, endine Jõhvi)', 'Maarjamõisa kliinikum (Tartu), Jõgeva haigla', 'Narva haigla', 'Pärnu haigla', 'Haapsalu haigla', 'Järvamaa haigla (Paide)', 'Rakvere haigla, Tapa haigla', 'Valga haigla', 'Viljandi haigla', 'Lõuna-Eesti haigla (Võru), Põlva haigla']
 ikoodid = []
 arvud = []
-# Закончи момент с выходом и отсортируй списки
+#отсортируй списки
 while IDkood is None:
     KontrollSumTest = 0
     IDkoodtest = input('Enter ID kood: ')
     if IDkoodtest.isdigit() == True:
         if len(IDkoodtest) == 11:
             if IDkoodtest[0] in FirstNumber:
-                NumbersTest = IDkoodtest[1:3]
-                NumbersTest = int(NumbersTest)
+                NumbersTesty = IDkoodtest[1:3]
+                NumbersTesty = int(NumbersTesty)
                 FirstNumbervariable = IDkoodtest[0]
-                if (NumbersTest >= 0 and NumbersTest < 26) or (NumbersTest >= 0 and NumbersTest < 100 and FirstNumbervariable in FirstNumbertest):
-                    NumbersTest = IDkoodtest[3:5]
-                    NumbersTest = int(NumbersTest)                      
-                    if NumbersTest > 0 and NumbersTest < 13:
+                if (NumbersTesty >= 0 and NumbersTesty <= year) or (NumbersTesty >= 0 and NumbersTesty < 100 and FirstNumbervariable in FirstNumbertest):
+                    NumbersTestM = IDkoodtest[3:5]
+                    NumbersTestM = int(NumbersTestM)                      
+                    if (NumbersTesty == year and NumbersTestM <= month) or (NumbersTestM > 0 and NumbersTestM < 13):
                         NumbersTest = IDkoodtest[5:7]
-                        NumbersTest = int(NumbersTest)
-                        if NumbersTest > 0 and NumbersTest < 32:
-                            lastnumberID = IDkoodtest[10]
+                        NumbersTest = int(NumbersTestM)
+                        if (NumbersTesty == year and NumbersTest == month and NumbersTest <= day) or (NumbersTest > 0 and NumbersTest < 32):
+                            lastnumberID = IDkoodtest[10]   
                             lastnumberID = int(lastnumberID)
                             if lastnumberID != 0:
                                 for x in range(10):
