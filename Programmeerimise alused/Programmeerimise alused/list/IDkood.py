@@ -1,8 +1,6 @@
 ﻿from datetime import date
 current_date = date.today()
-print(current_date)
 year, month, day = current_date.year, current_date.month, current_date.day
-print(year, month, day)
 IDkood = None
 FirstNumber = ['1','2','3','4','5','6']
 FirstNumbertest = ['1','2','3','4']
@@ -124,3 +122,13 @@ while IDkood is None:
         IDkood = 1
         arvud.sort()
         print('Not correct IDkodes', arvud)
+        M, W = [], []
+        quantityOfIDinList = len(ikoodid)
+        for x in range(quantityOfIDinList):
+            tempID = ikoodid[x]
+            if tempID[0] in ['1', '3', '5']:
+                M.append(tempID)
+            elif tempID[0] in ['2', '4', '6']:
+                W.append(tempID)
+            print('Women ID kodes', W)
+            print("Men ID kodes", M)
