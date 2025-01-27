@@ -212,11 +212,21 @@
 # print(numbersfor6)
 # numbersfor6.insert(indexinlist, strangenumber)
 # print(numbersfor6)
-# #7
-listsfor7 = ['крот', 'белка', 'выхухоль'], ['a', 'aa', 'aaa', 'aaaa', 'aaaaa'], ['qweasdqweas', 'q', 'rteww', 'ewqqqqq']
-for x in range(len(listsfor7)):
-    lenlist = []
-    x = x - 1
-    tempvariable = listsfor7[x]
-    for y in range(len(tempvariable)):
-        lenTempVariable = len(tempvariable)
+# #8
+listsfor8 = ['крот', 'белка', 'выхухоль'], ['a', 'aa', 'aaa', 'aaaa', 'aaaaa'], ['qweasdqweas', 'q', 'rteww', 'ewqqqqq']
+listfor8after = []
+for x in range(len(listsfor8)):
+    newlist = listsfor8[x]
+    newlistafter = []
+    largestNumberinList = len(max(newlist, key = len))
+    for y in range(len(newlist)):
+        lenghtOfWord = len(newlist[y])
+        if lenghtOfWord != largestNumberinList:
+            extraChars = largestNumberinList - lenghtOfWord
+            tempvariable = newlist[y] + '_' * extraChars
+        else:
+            tempvariable = newlist[y]
+        newlistafter.append(tempvariable)
+    listfor8after.append(newlistafter)
+print(listfor8after)
+#### print(min(words, key=len))  # "apple" (самое короткое слово)
