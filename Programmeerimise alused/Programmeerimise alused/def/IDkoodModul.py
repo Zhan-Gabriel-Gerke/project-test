@@ -1,83 +1,83 @@
-from datetime import date
+﻿from datetime import date
 
-def get_current_date():
-    current_date = date.today()
-    return current_date.year, current_date.month, current_date.day
+# Общие переменные
+current_date = date.today()
+year, month, day = current_date.year, current_date.month, current_date.day
+FirstNumber = ['1', '2', '3', '4', '5', '6']
+FirstNumbertest = ['1', '2', '3', '4']
+Place = [
+    'Kuressaare haigla',
+    'Tartu Ülikooli Naistekliinik',
+    'Ida-Tallinna keskhaigla, Pelgulinna sünnitusmaja (Tallinn)',
+    'Keila haigla',
+    'Rapla haigla, Loksa haigla, Hiiumaa haigla (Kärdla)',
+    'Ida-Viru keskhaigla (Kohtla-Järve, endine Jõhvi)',
+    'Maarjamõisa kliinikum (Tartu), Jõgeva haigla',
+    'Narva haigla',
+    'Pärnu haigla',
+    'Haapsalu haigla',
+    'Järvamaa haigla (Paide)',
+    'Rakvere haigla, Tapa haigла',
+    'Valga haigла',
+    'Viljandi haigла',
+    'Lõuna-Eesti haigла (Võru), Põlва haigла'
+]
 
-def validate_id_length(IDkoodtest):
-    return len(IDkoodtest) == 11
-
-def validate_first_number(IDkoodtest, FirstNumber):
-    return IDkoodtest[0] in FirstNumber
-
-def calculate_kontrollsum(IDkoodtest):
+# Функции
+def validate_id(IDkoodtest, year, month, day):
     KontrollSumTest = 0
-    for x in range(10):
-        NumbersTest = int(IDkoodtest[x])
-        KontrollSumTest += NumbersTest * ((x % 9) + 1)
-    remainderOfKontrollSum = KontrollSumTest % 11
-    if remainderOfKontrollSum == 10:
-        KontrollSumTest = 0
-        for x in range(8):
-            NumbersTest = int(IDkoodtest[x])
-            KontrollSumTest += NumbersTest * ((x % 8) + 2)
-        remainderOfKontrollSum = KontrollSumTest % 11
-    return remainderOfKontrollSum
+    if len(IDkoodtest) == 11 and IDkoodtest[0] in FirstNumber:
+        NumbersTesty = int(IDkoodtest[1:3])
+        if (0 <= NumbersTesty <= year) or (0 <= NumbersTesty < 100 and IDkoodtest[0] in FirstNumbertest):
+            NumbersTestM = int(IDkoodtest[3:5])
+            if (NumbersTesty == year and NumbersTestM <= month) or (1 <= NumbersTestM < 13):
+                NumbersTest = int(IDkoodtest[5:7])
+                if (NumbersTesty == year and NumbersTest == month and NumbersTest <= day) or (1 <= NumbersTest < 32):
+                    return True
+    return False
 
-def determine_birthplace(birthplace, Place):
-    for index, threshold in enumerate(range(1, 701, 50)):
-        if birthplace < threshold + 50:
-            return Place[index]
-    return "Unknown"
-
-def determine_sex(IDkoodtest):
-    return "Female" if int(IDkoodtest[0]) % 2 == 0 else "Male"
-
-def determine_date_of_birth(IDkoodtest):
-    century_prefix = "19" if IDkoodtest[0] in ['3', '4'] else "20"
-    return f"{IDkoodtest[5:7]}.{IDkoodtest[3:5]}.{century_prefix}{IDkoodtest[1:3]}"
-
-def validate_id_code(IDkoodtest, year, month, day, FirstNumber, FirstNumbertest, Place, ikoodid, arvud):
-    if IDkoodtest.isdigit():
-        if validate_id_length(IDkoodtest):
-            if validate_first_number(IDkoodtest, FirstNumber):
-                NumbersTesty = int(IDkoodtest[1:3])
-                FirstNumbervariable = IDkoodtest[0]
-                if (NumbersTesty >= 0 and NumbersTesty <= year) or (
-                    NumbersTesty >= 0 and NumbersTesty < 100 and 
-                    FirstNumbervariable in FirstNumbertest):
-                    NumbersTestM = int(IDkoodtest[3:5])
-                    if (NumbersTesty == year and NumbersTestM <= month) or (
-                        NumbersTestM > 0 and NumbersTestM < 13):
-                        NumbersTest = int(IDkoodtest[5:7])
-                        if (NumbersTesty == year and NumbersTest == month and NumbersTest <= day) or (
-                            NumbersTest > 0 and NumbersTest < 32):
-                            remainderOfKontrollSum = calculate_kontrollsum(IDkoodtest)
-                            lastnumberID = int(IDkoodtest[10])
-                            if lastnumberID == remainderOfKontrollSum:
-                                ikoodid.append(IDkoodtest)
-                                birthplace = int(IDkoodtest[7:10])
-                                birthplace_str = determine_birthplace(birthplace, Place)
-                                sex = determine_sex(IDkoodtest)
-                                DateBirth = determine_date_of_birth(IDkoodtest)
-                                print(f"It's {sex} Date of Birthday {DateBirth} Place of Birth {birthplace_str}")
-                            else:
-                                print('Error Kontroll sum')
-                                arvud.append(IDkoodtest)
-                        else:
-                            print('Error 6-7 numbers')
-                            arvud.append(IDkoodtest)
-                    else:
-                        print('Error 4-5 numbers')
-                        arvud.append(IDkoodtest)
-                else:
-                    print('Error 2-3 numbers')
-                    arvud.append(IDkoodtest)
-            else:
-                print('ID kood only can start from', FirstNumber)
-                arvud.append(IDkoodtest)
-        else:
-            print('ID kood is not correct 11 numbers')
-            arvud.append(IDkoodtest)
+def calculate_control_sum(IDkoodtest):
+    KontrollSumTest = 0
+    lastnumberID = int(IDkoodtest[10])
+    if lastnumberID != 0:
+        for x in range(10):
+            KontrollSumTest += int(IDkoodtest[x - 1]) * x
     else:
-        print('ID kood is not correct ONLY INT')
+        for x in range(8):
+            KontrollSumTest += int(IDkoodtest[x - 1]) * (x + 2)
+        for x in range(4):
+            KontrollSumTest += int(IDkoodtest[x + 6]) * x
+    return KontrollSumTest
+
+def determine_birthplace(birthplace):
+    birthplace = int(birthplace)
+    if 1 <= birthplace < 11:
+        return Place[0]
+    elif 11 <= birthplace < 21:
+        return Place[1]
+    elif 21 <= birthplace < 151:
+        return Place[2]
+    elif 151 <= birthplace < 161:
+        return Place[3]
+    elif 161 <= birthplace < 221:
+        return Place[4]
+    elif 221 <= birthplace < 271:
+        return Place[5]
+    elif 271 <= birthplace < 371:
+        return Place[6]
+    elif 371 <= birthplace < 421:
+        return Place[7]
+    elif 421 <= birthplace < 471:
+        return Place[8]
+    elif 491 <= birthplace < 521:
+        return Place[9]
+    elif 521 <= birthplace < 571:
+        return Place[10]
+    elif 571 <= birthplace < 601:
+        return Place[11]
+    elif 601 <= birthplace < 651:
+        return Place[12]
+    elif 651 <= birthplace < 701:
+        return Place[13]
+    else:
+        return 'Error Birth Place'
