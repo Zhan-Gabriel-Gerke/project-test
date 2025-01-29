@@ -19,10 +19,22 @@ def RandomPass():
     return psword
 
 def CheckPass(psword):
-    if psword.isdigit() == True:
-        if psword.isupper() == True:
-            if psword.islower() == True:
-                for x in range(len(psword)):
-                    if psword[x] in charsList:
-                        return True
+    for x in range(len(psword)):
+        if psword[x].isdigit() == True:
+            print('1 lvl')
+            for x in range(len(psword)):
+                if psword[x].isupper() == True:
+                    print('2 lvl')
+                    for x in range(len(psword)):
+                        if psword[x].islower() == True:
+                            print('3 lvl')
+                            for y in range(len(psword)):
+                                if psword[y] in charsList:
+                                    print('4 lvl')
+                                    return True
     return False
+def check_user_in_list(User):
+    if User in UsernamesList:
+        return False
+    else:
+        return True
