@@ -14,7 +14,11 @@ elif a == '3':
     elif b == '2':
         Username, OldPass, NewPass = input('Username'), input('Old password'), input('New password')
         answer = Change_Password(Username, OldPass, NewPass)
+    else:
+        print('You wrote wrong number')
 elif a == '4':
     Username = input('Username')
     answer = Password_Reset(Username)
+else:
+    print('You wrote wrong number')
 print(answer) 
