@@ -2,7 +2,7 @@
 import random
 UsernamesList = ['Test1','Test2', 'Test3']
 PasswordsList = ['1234', '123456', '12345678']
-charsList = ['.',',',':',';','!','_','*','-','+','(',')','/','#','¤','%','&','@']
+charsList = ['.',',',':',';','!','_','*','-','+','(',')','/','#','¤','%','&','@','$']
 print(charsList)
 def RandomPass():
     """Function creates Strong Password
@@ -74,7 +74,7 @@ def Sign_in(Username:str, Password:str):
         passw = CheckPass(Password)
         if passw == True:
             UsernamesList.append(Username), PasswordsList.append(Password)
-            answer = 'Successful'
+            answer = 'User has been created'
         else:
             answer = 'Error'
     else:
@@ -93,7 +93,7 @@ def Change_Username(Username:str, NewUsername:str):
         indexUsername = UsernamesList.index(Username)
         UsernamesList.pop(indexUsername)
         UsernamesList.insert(indexUsername, NewUsername)
-        answer = 'Successful'
+        answer = 'Username has been changed'
     else:
         answer = "User doesn't exist"
     return answer
@@ -113,7 +113,7 @@ def Change_Password(Username:str, OldPass:str, NewPass:str):
         if OldPass == PasswordsList[indexUsername]:
             PasswordsList.pop(indexUsername)
             PasswordsList.insert(indexUsername, NewPass)
-            answer = 'Successful', PasswordsList
+            answer = 'Password has been changed', PasswordsList
         else:
             answer = 'Wrong Password'
     else:
@@ -136,7 +136,7 @@ def Password_Reset(Username:str):
         PasswordsList.pop(indexUsername)
         NewPass = RandomPass()
         PasswordsList.insert(indexUsername, NewPass)
-        answer = "Password changed, New Password: ", NewPass
+        answer = "Password has been reset, New Password: ", NewPass
     else:
         answer = "User doesn't exist"
     return answer
