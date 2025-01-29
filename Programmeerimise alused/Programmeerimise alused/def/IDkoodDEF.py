@@ -1,4 +1,4 @@
-﻿from functions import *
+﻿from IDkoodModul import *
 ikoodid = []
 arvud = []
 IDkood = None

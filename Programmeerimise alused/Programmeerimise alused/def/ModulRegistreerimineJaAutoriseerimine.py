@@ -1,11 +1,14 @@
 ﻿## modul
-from curses.ascii import isdigit, islower
 import random
-UsernamesList = []
-PasswordsList = []
+UsernamesList = ['Test1','Test2', 'Test3']
+PasswordsList = ['1234', '123456', '12345678']
 charsList = ['.',',',':',';','!','_','*','-','+','(',')','/','#','¤','%','&','@']
 print(charsList)
 def RandomPass():
+    """Function creates Strong Password
+   
+    rtype:str
+    """
     str0=".,:;!_*-+()/#¤%&"
     str1 = '0123456789'
     str2 = 'qwertyuiopasdfghjklzxcvbnm'
@@ -18,23 +21,124 @@ def RandomPass():
     # Пароль готов
     return psword
 
-def CheckPass(psword):
+def CheckPass(psword:str):
+    """Function checks the complexity of the password
+    
+    :param str paword: Password
+    :rtype bool
+    """
     for x in range(len(psword)):
         if psword[x].isdigit() == True:
-            print('1 lvl')
             for x in range(len(psword)):
                 if psword[x].isupper() == True:
-                    print('2 lvl')
                     for x in range(len(psword)):
                         if psword[x].islower() == True:
-                            print('3 lvl')
                             for y in range(len(psword)):
                                 if psword[y] in charsList:
-                                    print('4 lvl')
                                     return True
     return False
-def check_user_in_list(User):
+def check_user_in_list(User:str):
+    """Function checks if the user in list
+
+    :param str: Username
+    :trype bool
+    """
     if User in UsernamesList:
-        return False
-    else:
         return True
+    else:
+        return False
+def Log_in(Username:str, Password:str):
+    """Function checks if user in list and if password is correct
+    If everнthing is correct return the bool data for authorization in the system
+    :param str Username: Username
+    :param str Password: Password for user
+    :rtype: bool
+    """
+    unicCheck = check_user_in_list(Username)
+    if unicCheck == True:
+        indexUsername = UsernamesList.index(Username)
+        Passfromlist = PasswordsList[indexUsername]
+        if Password == Passfromlist:
+            return True
+    return False
+def Sign_in(Username:str, Password:str):
+    """ Function checks if user in list and if password is correct
+    If everнthing is correct the function 
+    will add Username and Passwort to the list
+    :param str Username
+    :param str Password
+    :rtype: str
+    """
+    unicCheck = check_user_in_list(Username)
+    if unicCheck == False:
+        passw = CheckPass(Password)
+        if passw == True:
+            UsernamesList.append(Username), PasswordsList.append(Password)
+            answer = 'Successful'
+        else:
+            answer = 'Error'
+    else:
+        answer = 'Erorr'
+    return answer
+def Change_Username(Username:str, NewUsername:str):
+    """Function checks if user in the list
+    If fuction will find Username in the list
+    It'll change Old username to New username
+    :param str Username
+    :param str Password
+    :rtype: str
+    """
+    unicCheck = check_user_in_list(Username)
+    if unicCheck == True:
+        indexUsername = UsernamesList.index(Username)
+        UsernamesList.pop(indexUsername)
+        UsernamesList.insert(indexUsername, NewUsername)
+        answer = 'Successful'
+    else:
+        answer = "User doesn't exist"
+    return answer
+#Username, OldPass, NewPass = input('Username: '), input('Old Password: '), input('New Password')
+def Change_Password(Username:str, OldPass:str, NewPass:str):
+    """Funtion checks if user in the list
+
+    If function will find Username in the list
+    It'll change OldPassword to NewPassword
+    :param str Username
+    :param str OldPass
+    :param str NewPass
+    """
+    unicCheck = check_user_in_list(Username)
+    if unicCheck == True:
+        indexUsername = UsernamesList.index(Username)
+        if OldPass == PasswordsList[indexUsername]:
+            PasswordsList.pop(indexUsername)
+            PasswordsList.insert(indexUsername, NewPass)
+            answer = 'Successful', PasswordsList
+        else:
+            answer = 'Wrong Password'
+    else:
+        answer = "User doesn't exist"
+    return answer
+# answer = Change_Password(Username, OldPass, NewPass)
+# print(answer)
+
+# Username = input('Username: ')
+def Password_Reset(Username:str):
+    """Function reset password
+    Funtion will request username. If function will find username in the list
+    It'll delete old password and create new password
+    :param str Username
+    :trype: str
+    """
+    unicCheck = check_user_in_list(Username)
+    if unicCheck == True:
+        indexUsername = UsernamesList.index(Username)
+        PasswordsList.pop(indexUsername)
+        NewPass = RandomPass()
+        PasswordsList.insert(indexUsername, NewPass)
+        answer = "Password changed, New Password: ", NewPass
+    else:
+        answer = "User doesn't exist"
+    return answer
+# answer = Password_Reset(Username)
+# print(answer)

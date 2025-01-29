@@ -86,5 +86,3 @@ def is_prime(a=randint(0,1000))-> bool:
     #         if a % x == 0:
     #             boolnumber = False
     return v
-
-def date(day:int, month:int, year:int)->bool:
