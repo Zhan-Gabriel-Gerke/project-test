@@ -18,5 +18,3 @@ questionsVar = read_file(filePath)
 for interviews in range(howMany):
     name = input('Enter name of person')
     testVar = questioner(name, questionsVar, congratulations_name, congratulations_score, goodluck_list)
-print(congratulations_name, congratulations_score)
-print(goodluck_list)
