@@ -1,5 +1,10 @@
-1. Which conditional operator is used first? : If
-2. Is Python a markup language? : No
-3. Short form of HyperText Markup Language: HTML
-4. Is HTML a programming language? : No
-5. Short form of Cascading Style Sheets? : CSS
+1 Which conditional operator is used first? : If
+2 Is Python a markup language? : No
+3 Short form of HyperText Markup Language : HTML
+4 Is HTML a programming language? : No
+5 Short form of Cascading Style Sheets? : CSS
+6 What is the short form of JavaScript? : JS  
+7 Is C++ an interpreted language? : No  
+8 What keyword is used to define a function in Python? : def  
+9 Which symbol is used for single-line comments in Python? : #  
+10 Is Java the same as JavaScript? : No  
