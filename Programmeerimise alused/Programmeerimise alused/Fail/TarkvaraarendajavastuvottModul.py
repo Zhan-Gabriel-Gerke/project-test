@@ -37,13 +37,10 @@ def questioner(name:str, lines:list, congratulations_name:list, congratulations_
         congratulations_name.append(name)
         congratulations_score.append(count)
     else:
-        goodluck_list.append(name, count)
+        data = name + ":" + str(count)
+        goodluck_list.append(data)
     return congratulations_name, congratulations_score, goodluck_list
 # answer = questioner('Zhan', answer1, congratulations_list, goodluck_list)
-howMany = int(input('How many interviwes will be?: '))
-for interviews in range(howMany):
-    name = input('Enter name of person')
-    answer = questioner(name, answer1, congratulations_name, congratulations_score, goodluck_list)
 def sortListWithGrade(congratulations_name:list, congratulations_score:list):
     sortV = sorted(range(len(score)), key=lambda i: score[i], reverse=True)
     sorted_congratulations_name = [congratulations_name[i] for i in sortV]

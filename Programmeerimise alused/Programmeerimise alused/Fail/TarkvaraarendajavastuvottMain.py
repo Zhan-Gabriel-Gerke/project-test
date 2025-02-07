@@ -14,4 +14,9 @@ while 1:
     else:
         break
 filePath = r'C:\Users\LP1\source\repos\Zhan-Gabriel-Gerke\project-test\Programmeerimise alused\Programmeerimise alused\Fail\kusimused_vastused.txt'
-questionsVar =
+questionsVar = read_file(filePath)
+for interviews in range(howMany):
+    name = input('Enter name of person')
+    testVar = questioner(name, questionsVar, congratulations_name, congratulations_score, goodluck_list)
+print(congratulations_name, congratulations_score)
+print(goodluck_list)
