@@ -1,9 +1,7 @@
 from TarkvaraarendajavastuvottModul import *
 questions = []
-congratulations_name = []
-congratulations_score = []
+congratulations = []
 goodluck_list = []
-score = []
 while 1:
     try:
         howMany = int(input('Enter how many interviews do you want to do'))
@@ -15,6 +13,16 @@ while 1:
         break
 filePath = r'C:\Users\LP1\source\repos\Zhan-Gabriel-Gerke\project-test\Programmeerimise alused\Programmeerimise alused\Fail\kusimused_vastused.txt'
 questionsVar = read_file(filePath)
-for interviews in range(howMany):
-    name = input('Enter name of person')
-    testVar = questioner(name, questionsVar, congratulations_name, congratulations_score, goodluck_list)
+while 1:
+    for interviews in range(howMany):
+        name = input('Enter name of person')
+        if len(name) == 0:
+            print('You wrote enmpy line ,The loop has restarted')
+            break
+        testVar = questioner(name, questionsVar, congratulations, goodluck_list)
+    else:
+        break   
+congratulationsFail = r'C:\Users\LP1\source\repos\Zhan-Gabriel-Gerke\project-test\Programmeerimise alused\Programmeerimise alused\Fail\vastuvoetud.txt'
+write_file(congratulationsFail, congratulations)
+goodluckFail = r'C:\Users\LP1\source\repos\Zhan-Gabriel-Gerke\project-test\Programmeerimise alused\Programmeerimise alused\Fail\eisoobi.txt'
+write_file(goodluckFail, goodluck_list)
