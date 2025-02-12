@@ -13,6 +13,10 @@ def read_users_pass(fail:str, UsernamesList:list, PasswordsList:list)->any:
     return UsernamesList, PasswordsList
 def write_to_single_file(fail:str, UsernameList:list, PasswordsList:list):
     fail=open(fail,"w", encoding="utf-8")
+    for x in range(len(UsernameList)):
+        TempVariable = str(UsernameList[x])+':'+str(PasswordsList[x])
+        fail.write(TempVariable+"\n")
+    fail.close
 def RandomPass():
     """Function creates Strong Password
    
