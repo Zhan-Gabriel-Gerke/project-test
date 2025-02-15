@@ -6,27 +6,6 @@ UsernamesList = ['Test1','Test2', 'Test3']
 PasswordsList = ['1234', '123456', '12345678']
 charsList = ['.',',',':',';','!','_','*','-','+','(',')','/','#','¤','%','&','@','$']
 print(charsList)
-def email():
-    towho = input("To who?")
-    letter = 'Your account has been created. Username: User, Pass: 1234'
-    smtp_server='smtp.gmail.com'
-    port=587
-    sender_email = 'zangerke3@gmail.com'
-    password = 'llda pohc nbsh nahe'
-    context=ssl.create_default_context()
-    msg=EmailMessage()
-    msg.set_content(letter)
-    msg['Subject']='e-mail sending'
-    msg['From']='Zhan-Gabriel Gerke'
-    msg['To'] = towho
-    try:
-        server=smtp_server.SMTP()
-        server.starttls(context=context)
-        server.login(sender_email, password)
-        server.send_message(msg)
-        print('Sent')
-    except Exception as e:
-        print('Error', e)
 def RandomPass():
     """Function creates Strong Password
    
@@ -170,9 +149,9 @@ def email():
     letter = 'Your account has been created. Username: User, Pass: 1234'
     smtp_server = 'smtp.gmail.com'
     port = 587
-    sender_email = 'zangerke3@gmail.com'
-    password = 'llda pohc nbsh nahe'
-
+    sender_email = 'testmailfortthk@gmail.com'
+    #####https://myaccount.google.com/apppasswords
+    password = 'esmd plst aeln ydln'
     context = ssl.create_default_context()
     msg = EmailMessage()
     msg.set_content(letter)

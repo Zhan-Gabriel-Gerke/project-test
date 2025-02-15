@@ -1,25 +1,25 @@
 ﻿## modul
 import random
+from email.message import EmailMessage
+import smtplib, ssl
 UsernamesList = []
 PasswordsList = []
 charsList = ['.',',',':',';','!','_','*','-','+','(',')','/','#','¤','%','&','@','$']
-def read_users_pass(fail:str, UsernamesList:list, PasswordsList:list)->any:
-    fail=open(fail,"r",encoding="utf-8")
-    for line in fail:
+def read_users_pass():
+    file=open(r'C:\Users\LP1\source\repos\Zhan-Gabriel-Gerke\project-test\Programmeerimise alused\Programmeerimise alused\def\Users.Pass.txt',"r",encoding="utf-8")
+    for line in file:
         n = line.find(":")
         UsernamesList.append(line[0:n].strip())
         PasswordsList.append(line[n+1:len(line)].strip())
-    fail.close()
+    file.close()
     return UsernamesList, PasswordsList
-def write_to_single_file(fail:str, UsernameList:list, PasswordsList:list):
-    fail=open(fail,"w", encoding="utf-8")
-    for x in range(len(UsernameList)):
-        TempVariable = str(UsernameList[x])+':'+str(PasswordsList[x])
-        fail.write(TempVariable+"\n")
-    fail.close
+def write_to_single_file():
+    with open(r'C:\Users\LP1\source\repos\Zhan-Gabriel-Gerke\project-test\Programmeerimise alused\Programmeerimise alused\def\Users.Pass.txt', "w", encoding="utf-8") as f:
+        for x in range(len(UsernamesList)):
+            TempVariable = f"{UsernamesList[x]}:{PasswordsList[x]}"
+            f.write(TempVariable + "\n")
 def RandomPass():
     """Function creates Strong Password
-   
     rtype:str
     """
     str0=".,:;!_*-+()/#¤%&"
@@ -56,7 +56,6 @@ def check_user_in_list(User:str):
     :param str: Username
     :trype bool
     """
-    read_users_pass(r'C:\Users\LP1\source\repos\Zhan-Gabriel-Gerke\project-test\Programmeerimise alused\Programmeerimise alused\def\Users.Pass.txt', UsernamesList, PasswordsList)
     if User in UsernamesList:
         return True
     else:
@@ -88,7 +87,9 @@ def Sign_in(Username:str, Password:str):
         passw = CheckPass(Password)
         if passw == True:
             UsernamesList.append(Username), PasswordsList.append(Password)
-            answer = 'User has been created'
+            write_to_single_file()
+            answer = f'User has been created Username: {Username} Password: {Password}'
+            email(answer)
         else:
             answer = 'Error'
     else:
@@ -107,7 +108,9 @@ def Change_Username(Username:str, NewUsername:str):
         indexUsername = UsernamesList.index(Username)
         UsernamesList.pop(indexUsername)
         UsernamesList.insert(indexUsername, NewUsername)
-        answer = 'Username has been changed'
+        write_to_single_file()
+        answer = f'Username has been changed New username: {UsernamesList[indexUsername]}'
+        email(answer)
     else:
         answer = "User doesn't exist"
     return answer
@@ -127,7 +130,9 @@ def Change_Password(Username:str, OldPass:str, NewPass:str):
         if OldPass == PasswordsList[indexUsername]:
             PasswordsList.pop(indexUsername)
             PasswordsList.insert(indexUsername, NewPass)
-            answer = 'Password has been changed', PasswordsList
+            write_to_single_file()
+            answer = f'Password has been changed New Password: {PasswordsList[indexUsername]}'
+            email(answer)
         else:
             answer = 'Wrong Password'
     else:
@@ -150,7 +155,9 @@ def Password_Reset(Username:str):
         PasswordsList.pop(indexUsername)
         NewPass = RandomPass()
         PasswordsList.insert(indexUsername, NewPass)
-        answer = "Password has been reset, New Password: ", NewPass
+        write_to_single_file()
+        answer = f"Password has been reset, Username: {Username} New Password: {NewPass}"
+        email(answer)
     else:
         answer = "User doesn't exist"
     return answer
@@ -161,3 +168,25 @@ def write_to_file(fail:str, listt=[]):
     for element in listt:
         f.write(element+"\n")
     f.close()
+def email(letter):
+    towho = input("Who do you want to send an email? ")
+    smtp_server = 'smtp.gmail.com'
+    port = 587
+    sender_email = 'testmailfortthk@gmail.com'
+    #####https://myaccount.google.com/apppasswords
+    password = 'esmd plst aeln ydln'
+    context = ssl.create_default_context()
+    msg = EmailMessage()
+    msg.set_content(letter)
+    msg['Subject'] = 'e-mail sending'
+    msg['From'] = sender_email
+    msg['To'] = towho
+    try:
+        server = smtplib.SMTP(smtp_server, port)
+        server.starttls(context=context)
+        server.login(sender_email, password)
+        server.send_message(msg)
+        server.quit()
+        print('Sent')
+    except Exception as e:
+        print('Error:', e)

@@ -1,10 +1,26 @@
-﻿UsernameList = [1,2,3]
-PasswordsList = ['One', 'Two', 'Three']
-def write_to_single_file(fail:str, UsernameList:list, PasswordsList:list):
-    TempList = []
-    fail=open(fail,"w", encoding="utf-8")
-    for x in range(len(UsernameList)):
-        TempVariable = str(UsernameList[x])+':'+str(PasswordsList[x])
-        fail.write(TempVariable+"\n")
-    fail.close
-write_to_single_file(r'C:\Users\LP1\source\repos\Zhan-Gabriel-Gerke\project-test\Programmeerimise alused\Programmeerimise alused\def\Users.Pass.txt', UsernameList, PasswordsList)
+﻿from email.message import EmailMessage
+import smtplib, ssl
+def email():
+    towho = input("To who? ")
+    letter = 'Your account has been created. Username: User, Pass: 1234'
+    smtp_server = 'smtp.gmail.com'
+    port = 587
+    sender_email = 'testmailfortthk@gmail.com'
+    #####https://myaccount.google.com/apppasswords
+    password = 'esmd plst aeln ydln'
+    context = ssl.create_default_context()
+    msg = EmailMessage()
+    msg.set_content(letter)
+    msg['Subject'] = 'e-mail sending'
+    msg['From'] = sender_email
+    msg['To'] = towho
+    try:
+        server = smtplib.SMTP(smtp_server, port)
+        server.starttls(context=context)
+        server.login(sender_email, password)
+        server.send_message(msg)
+        server.quit()
+        print('Sent')
+    except Exception as e:
+        print('Error:', e)
+email()
