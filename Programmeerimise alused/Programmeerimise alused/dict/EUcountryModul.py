@@ -1,3 +1,4 @@
+import random
 country_capital_dict = {}
 # def write_to_single_file():
 #     with open(r'C:\Users\LP1\source\repos\Zhan-Gabriel-Gerke\project-test\Programmeerimise alused\Programmeerimise alused\def\Users.Pass.txt', "w", encoding="utf-8") as f:
@@ -31,7 +32,15 @@ def search(Name:str):
                 country_capital_dict[country] = capital
                 answer = 'Thank you for your support'
                 return answer
-# def update_dict(Name:str, type:str)
+def update_dict_capital(NameOfCountry:str ,RightName:str):
+    country_capital_dict[NameOfCountry] = RightName
+def update_dict_country(NameOfCountry:str, RightName:str):
+    capital = country_capital_dict.pop(NameOfCountry)
+    country_capital_dict[RightName] = capital
 read_country_capital()
 # AAA = search('Bosnia ja Hertsegoviina')
 # print(AAA)
+# def country_capital_test():
+#     quatityOfCountry = len(country_capital_dict)
+#     print(quatityOfCountry)
+# country_capital_test()
