@@ -40,7 +40,33 @@ def update_dict_country(NameOfCountry:str, RightName:str):
 read_country_capital()
 # AAA = search('Bosnia ja Hertsegoviina')
 # print(AAA)
-# def country_capital_test():
-#     quatityOfCountry = len(country_capital_dict)
-#     print(quatityOfCountry)
-# country_capital_test()
+def country_capital_test():
+    country_capital_list = list(country_capital_dict)
+    quatityOfCountry = len(country_capital_list)
+    Possible_Options = []
+    count = 0
+    for x in range(quatityOfCountry-1):
+        Possible_Options.append(x)
+    for y in range(10):
+        Random_Variable = random.randint(0,quatityOfCountry-1)
+        for xyx in range(1):
+            if Random_Variable in Possible_Options:
+                Possible_Options.remove(Random_Variable)
+                answer = input(f'Capital of {country_capital_list[Random_Variable]} ')
+                right_answer = country_capital_dict.get(country_capital_list[Random_Variable])
+                if answer == right_answer:
+                    count = count + 1
+                else:
+                    print('Your answer: ',answer, 'Right answer: ', right_answer)
+            else:
+                continue
+        # else:
+        #     Random_Variable = random.randint(0,quatityOfCountry)
+        #     answer = input(f'Capital of  {country_capital_list[Random_Variable]} ')
+        #     right_answer = country_capital_dict.get(country_capital_list[Random_Variable])
+        #     if answer == right_answer:
+        #         count = count + 1
+        #     else:
+        #         print('Your answer: ',answer, 'Right answer: ', right_answer)
+    print(f"Right answers: {count}")
+country_capital_test()
