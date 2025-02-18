@@ -1,4 +1,6 @@
 import random
+from gtts import *
+from os import path, remove, system
 country_capital_dict = {}
 # def write_to_single_file():
 #     with open(r'C:\Users\LP1\source\repos\Zhan-Gabriel-Gerke\project-test\Programmeerimise alused\Programmeerimise alused\def\Users.Pass.txt', "w", encoding="utf-8") as f:
@@ -69,3 +71,6 @@ def country_capital_test():
         #     else:
         #         print('Your answer: ',answer, 'Right answer: ', right_answer)
     print(f"Right answers: {count}")
+def text_to_speech(tekst:str,keel:str):
+    obj=gTTS(text=tekst,lang=keel,slow=False).save("heli.mp3")
+    system("heli.mp3")
