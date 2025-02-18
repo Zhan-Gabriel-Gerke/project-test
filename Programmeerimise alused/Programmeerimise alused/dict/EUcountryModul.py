@@ -69,4 +69,3 @@ def country_capital_test():
         #     else:
         #         print('Your answer: ',answer, 'Right answer: ', right_answer)
     print(f"Right answers: {count}")
-country_capital_test()
