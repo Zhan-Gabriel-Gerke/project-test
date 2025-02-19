@@ -1,6 +1,7 @@
-﻿import numpy as np # x=[min,max]
+﻿from matplotlib import legend
+import numpy as np # x=[min,max]
 import matplotlib.pyplot as plt
-def kitt():
+def kitt(color:str):
     x1=np.arange(0,9.5,0.5)
     y1=(2/27)*x1*x1-3
     x2=np.arange(-10,0.5,0.5)
@@ -29,12 +30,12 @@ def kitt():
     plt.grid(True)#Чтобы сетка была
     ax=plt.axes()
     ax.set_facecolor("lightblue")
-    colors=['c', 'm', 'y', 'r', 'g', 'b', 'w', 'k', 'k', 'k']
+    #colors=['c', 'm', 'y', 'r', 'g', 'b', 'w', 'k', 'k', 'k']
     #Рисуем
     for i in range(1,11):
-        plt.plot(eval(f"x{i}"),eval(f"y{i}"),colors[i-1]+"-*")
+        plt.plot(eval(f"x{i}"),eval(f"y{i}"),color[0]+"-*")#colors[i-1]+"-*")
     plt.show()
-def otsti():
+def otsti(color:str):
     x1=np.arange(-9,-0.5,0.5)
     y1=(-1/16)*(x1+5)**2+2
     x2=np.arange(1,9.5,0.5)
@@ -49,15 +50,15 @@ def otsti():
     y6=-(x6-7)**2+5
     x7=np.arange(-1,1.5,0.5)
     y7=(-0.5)*x7*x7+1.5
-    plt.figure(facecolor='lightgreen')
+    plt.figure(facecolor=color, dpi=100, figsize=(8, 6), edgecolor='black')
     plt.title('Vaal')
     plt.ylabel('Y')
     plt.xlabel('X')
     plt.grid(True)#Чтобы сетка была
     ax=plt.axes()
     ax.set_facecolor("lightblue")
-    colors=['c', 'm', 'y', 'r', 'g', 'b', 'w']
+    #colors=['c', 'm', 'y', 'r', 'g', 'b', 'w']
     #Рисуем
     for i in range(1,8):
-        plt.plot(eval(f"x{i}"),eval(f"y{i}"),colors[i-1]+"-*")
+        plt.plot(eval(f"x{i}"),eval(f"y{i}"),color[0]+"-*")                          #colors[i-1]+"-*")
     plt.show()
