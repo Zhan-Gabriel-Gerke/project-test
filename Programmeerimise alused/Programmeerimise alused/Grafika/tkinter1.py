@@ -1,7 +1,11 @@
 from tkinter import *
 from file.py import *
 def figuur():
-    pass
+    valik=var.get()
+    if valik==1:
+        otsti()
+    elif valik==2:
+        kitt()
 
 
 
