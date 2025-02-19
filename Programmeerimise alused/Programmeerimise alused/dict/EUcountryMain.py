@@ -2,7 +2,7 @@ from EUcountryModul import *
 if __name__ == "__main__": 
     file_to_dict()
 while True:
-    text_to_speech('1 - Search, 2 - Add Country and Capital to Dictionary', 'English')
+    # text_to_speech('1 - Search, 2 - Add Country and Capital to Dictionary', 'English')
     print('1 - Search, 2 - Add Country and Capital to Dictionary')
     print('3 - Change Dictionary 4 - Test')
     answer = None

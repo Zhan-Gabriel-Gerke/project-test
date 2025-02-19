@@ -1,4 +1,4 @@
-Albaania-Tirana
+﻿Albaania-Tirana
 Andorra-Andorra la Vella
 Armeenia-Jerevan
 Aserbaidþaan-Bakuu
@@ -48,3 +48,4 @@ Ungari-Budapest
 Valgevene-Minsk
 Vatikan-Vatican
 Venemaa-Moskva
+feffe-efefe

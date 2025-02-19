@@ -1,6 +1,6 @@
 import random
-from gtts import *
-from os import path, remove, system
+# from gtts import *
+# from os import path, remove, system
 country_capital_dict = {}
 capiral_country_dict = {}
 country = []
@@ -87,9 +87,9 @@ country = []
 #         #     else:
 #         #         print('Your answer: ',answer, 'Right answer: ', right_answer)
 #     print(f"Right answers: {count}")
-def text_to_speech(tekst:str,language:str):
-    obj=gTTS(text=tekst,lang=language,slow=False).save("heli.mp3")
-    system("heli.mp3")
+# def text_to_speech(tekst:str,language:str):
+#     obj=gTTS(text=tekst,lang=language,slow=False).save("heli.mp3")
+#     system("heli.mp3")
 def file_to_dict():
     file = open(r'C:\Users\LP1\source\repos\Zhan-Gabriel-Gerke\project-test\Programmeerimise alused\Programmeerimise alused\dict\Country,Capital.txt','r', encoding = 'utf-8-sig')
     for line in file:
@@ -98,6 +98,11 @@ def file_to_dict():
         capiral_country_dict[v]=k
         country.append(k)
     file.close
+def dict_to_file():
+    file = open(r'C:\Users\LP1\source\repos\Zhan-Gabriel-Gerke\project-test\Programmeerimise alused\Programmeerimise alused\dict\Country,Capital.txt', 'w', encoding='utf-8-sig')
+    for k, v in country_capital_dict.items():
+        file.write(f"{k}-{v}\n")
+    file.close()
 def search(Name:str):
     if Name in country_capital_dict:
         answer = country_capital_dict[Name]
@@ -110,6 +115,7 @@ def add_to_dict(country:str, capital:str):
     capiral_country_dict[capital] = country
     country_capital_dict[country] = capital
     print(f'The dictionary has been change')
+    dict_to_file()
     print(capiral_country_dict)
     print(country_capital_dict)
 def change_dict_country(Error_Name:str, Right_Name:str):
@@ -117,11 +123,13 @@ def change_dict_country(Error_Name:str, Right_Name:str):
     del capiral_country_dict[Capital]
     country_capital_dict[Right_Name] = Capital
     capiral_country_dict[Capital] = Right_Name
+    dict_to_file()
 def change_dict_capital(Error_Name:str, Right_Name:str):
     Country = capiral_country_dict.pop(Error_Name)
     del country_capital_dict[Country]
     country_capital_dict[Country] = Right_Name
     capiral_country_dict[Right_Name] = Country
+    dict_to_file()
 def country_capital_test():
     capiral_country_list = list(capiral_country_dict)
     country_capital_list = list(country_capital_dict)
