@@ -1,6 +1,6 @@
 import random
-# from gtts import *
-# from os import path, remove, system
+from gtts import *
+from os import path, remove, system
 country_capital_dict = {}
 capiral_country_dict = {}
 country = []
