@@ -1,7 +1,6 @@
 import random
-from typing import Counter
-# from gtts import *
-# from os import path, remove, system
+from gtts import *
+from os import path, remove, system
 country_capital_dict = {}
 capiral_country_dict = {}
 country = []
@@ -88,9 +87,9 @@ country = []
 #         #     else:
 #         #         print('Your answer: ',answer, 'Right answer: ', right_answer)
 #     print(f"Right answers: {count}")
-# def text_to_speech(tekst:str,keel:str):
-#     obj=gTTS(text=tekst,lang=keel,slow=False).save("heli.mp3")
-#     system("heli.mp3")
+def text_to_speech(tekst:str,language:str):
+    obj=gTTS(text=tekst,lang=language,slow=False).save("heli.mp3")
+    system("heli.mp3")
 def file_to_dict():
     file = open(r'C:\Users\LP1\source\repos\Zhan-Gabriel-Gerke\project-test\Programmeerimise alused\Programmeerimise alused\dict\Country,Capital.txt','r', encoding = 'utf-8-sig')
     for line in file:
@@ -115,12 +114,12 @@ def add_to_dict(country:str, capital:str):
     print(country_capital_dict)
 def change_dict_country(Error_Name:str, Right_Name:str):
     Capital = country_capital_dict.pop(Error_Name)
-    del country_capital_dict[Capital]
+    del capiral_country_dict[Capital]
     country_capital_dict[Right_Name] = Capital
     capiral_country_dict[Capital] = Right_Name
 def change_dict_capital(Error_Name:str, Right_Name:str):
     Country = capiral_country_dict.pop(Error_Name)
-    del capiral_country_dict[Country]
+    del country_capital_dict[Country]
     country_capital_dict[Country] = Right_Name
     capiral_country_dict[Right_Name] = Country
 def country_capital_test():
@@ -152,8 +151,8 @@ def country_capital_test():
             Random_Variable = random.randint(0,quatityOfCountry-1)
             if Random_Variable in Possible_Options:
                 Possible_Options.remove(Random_Variable)
-                answer = input(f"{capiral_country_list[Random_Variable]} What country capital is this")
-                right_answer = country_capital_dict.get(capiral_country_list[Random_Variable])
+                answer = input(f"{capiral_country_list[Random_Variable]} What country capital is this ")
+                right_answer = capiral_country_dict.get(capiral_country_list[Random_Variable])
                 if answer == right_answer:
                     count = count + 1
                 else:
