@@ -17,7 +17,7 @@ def figuur(varv:str):
         otsti(varv)
     elif valik==2:
         kitt(varv)
-
+ 
 aken=Tk() #model for window
 aken.geometry('800x400')
 aken.title("Graafikud")
