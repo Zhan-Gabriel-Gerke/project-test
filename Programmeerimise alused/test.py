@@ -1,26 +1,17 @@
-﻿from email.message import EmailMessage
-import smtplib, ssl
-def email():
-    towho = input("To who? ")
-    letter = 'Your account has been created. Username: User, Pass: 1234'
-    smtp_server = 'smtp.gmail.com'
-    port = 587
-    sender_email = 'testmailfortthk@gmail.com'
-    #####https://myaccount.google.com/apppasswords
-    password = 'esmd plst aeln ydln'
-    context = ssl.create_default_context()
-    msg = EmailMessage()
-    msg.set_content(letter)
-    msg['Subject'] = 'e-mail sending'
-    msg['From'] = sender_email
-    msg['To'] = towho
-    try:
-        server = smtplib.SMTP(smtp_server, port)
-        server.starttls(context=context)
-        server.login(sender_email, password)
-        server.send_message(msg)
-        server.quit()
-        print('Sent')
-    except Exception as e:
-        print('Error:', e)
-email()
+﻿import math
+def quadurav(a:int, b:int, c:int):
+    D = b ** 2 - 4 * a * c
+    if D > 0:
+        x1 = ((-1 * b) + math.sqrt(D)) / (2 * a)
+        x2 = ((-1 * b) - math.sqrt(D)) / (2 * a)
+        print(D)
+        print(x1, x2)
+    elif D == 0:
+        x = (-1 * b) / (2 * a)
+        print(x)
+    elif D < 0:
+        print('Wrong example')
+a = int(input('A: '))
+b = int(input('B: '))
+c = int(input('C: '))
+quadurav(a, b, c)
