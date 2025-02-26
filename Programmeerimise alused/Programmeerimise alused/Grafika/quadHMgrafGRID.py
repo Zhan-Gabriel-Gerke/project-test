@@ -64,7 +64,8 @@ entry_1 = tk.Entry(window,
                    )
 label_2 = tk.Label(window, text='x**2+',
                    fg='green',
-                   font=('Arial',20,'bold'))
+                   font=('Arial',20,'bold'),
+                   width=4)
 entry_2 = tk.Entry(window,
                    bg='lightblue',
                    fg='green',
@@ -73,7 +74,8 @@ entry_2 = tk.Entry(window,
                    )
 label_3 = tk.Label(window, text='x+',
                    fg='green',
-                   font=('Arial',20,'bold'))
+                   font=('Arial',20,'bold'),
+                   width=4)
 entry_4 = tk.Entry(window,
                    bg='lightblue',
                    fg='green',
@@ -82,7 +84,8 @@ entry_4 = tk.Entry(window,
                    )
 label_4 = tk.Label(window, text='=0',
                    fg='green',
-                   font=('Arial',20,'bold'))
+                   font=('Arial',20,'bold'),
+                   width=4)
 button_1 = tk.Button(window, text='Solve',
                      bg='green',
                      font=('Arial',20,'bold'),
@@ -91,7 +94,7 @@ label_5 = tk.Label(window, text='Answer',
                    bg='yellow',
                    font=('Arial',20,'bold'),
                    width=20)
-label_1.grid(row=0, column=1, columnspan=5)
+label_1.grid(row=0, column=0, columnspan=8)
 entry_1.grid(row=1, column=0)
 label_2.grid(row=1, column=1)
 entry_2.grid(row=1, column=2)
@@ -99,5 +102,5 @@ label_3.grid(row=1, column=3)
 entry_4.grid(row=1, column=4)
 label_4.grid(row=1, column=5)
 button_1.grid(row=1, column=6)
-label_5.grid(row=3, column=3, columnspan=5, ipady=5)
+label_5.grid(row=3, column=0, columnspan=8)
 window.mainloop()
