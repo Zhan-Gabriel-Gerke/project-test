@@ -58,9 +58,9 @@ def before_start():
         if TrueOrFalse == True:
             read_from_file()
             print(entry_email_var, entry_teema_var, entry_kiri_var)
-            entry_email.set(0, entry_email_var)
-            entry_kiri.set(1.0, entry_kiri_var)
-            entry_teema.set(0, entry_teema_var)
+            entry_email.insert(0, entry_email_var)
+            entry_kiri.insert(1.0, entry_kiri_var)
+            entry_teema.insert(0, entry_teema_var)
         # print(entry_email_var, entry_teema_var, entry_kiri_var, 'before_start')
     # else:
     #     global entry_email_var, entry_teema_var, entry_kiri_var
