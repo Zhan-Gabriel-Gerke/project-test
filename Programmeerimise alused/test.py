@@ -1,17 +1,8 @@
-﻿import math
-def quadurav(a:int, b:int, c:int):
-    D = b ** 2 - 4 * a * c
-    if D > 0:
-        x1 = ((-1 * b) + math.sqrt(D)) / (2 * a)
-        x2 = ((-1 * b) - math.sqrt(D)) / (2 * a)
-        print(D)
-        print(x1, x2)
-    elif D == 0:
-        x = (-1 * b) / (2 * a)
-        print(x)
-    elif D < 0:
-        print('Wrong example')
-a = int(input('A: '))
-b = int(input('B: '))
-c = int(input('C: '))
-quadurav(a, b, c)
+﻿latina = {'A':1, 'J':1, 'S':1, 'B':2, 'K':2,
+        'T':2, 'C':3, 'L':3, 'U':3, 'D':4,
+        'M':4, 'V':4, 'E':5, 'N':5, 'W':5,
+        'F':6, 'O':6, 'X':6, 'G':7, 'P':7,
+        'Y':7, 'H':8, 'Q':8, 'Z':8, 'I':9,
+        'R':9}
+test = latina.get('R')
+print(test)
