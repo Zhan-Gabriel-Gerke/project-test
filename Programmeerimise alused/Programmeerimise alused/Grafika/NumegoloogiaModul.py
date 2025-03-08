@@ -1,4 +1,5 @@
-﻿import tkinter as tk
+﻿from numbers import Number
+import tkinter as tk
 from tkinter import W, E, N, S, messagebox
 from PIL import Image, ImageTk
 def tkwindow():
@@ -23,13 +24,11 @@ def tkwindow():
     Label1.place(x=0, y=0)
     Entry1 = tk.Entry(window, bg="lightblue", font=('Arial',20,'bold'), width = 23)
     Entry1.place(x=0, y=30)
-    Button1 = tk.Button(window, text='Start', font=('Arial', 20, 'bold'), command=Start)
+    Button1 = tk.Button(window, text='Start', font=('Arial', 20, 'bold'), command=calculate)
     Button1.place(x=700, y=0)
     # Label2 = tk.Label(window, font=('Arial', 20, 'bold'), bg='red', width = 10, height=5, text="Here you'll see an answer")
     # Label2.place(x=80, y=150)
-    Button2 = tk.Button(window, text='Save result', font=('Arial', 20, 'bold'))
-    Button2.place(x=615, y=55)
-    Button3 = tk.Button(window, text='Show previous results', font=('Arial', 13, 'bold'))
+    Button3 = tk.Button(window, text='Show previous results', font=('Arial', 13, 'bold'), command=show_results)
     Button3.place(x=500, y=0)
     # LabelHuge = tk.Label(window, bg='white', font=('Arial', 20, 'bold'), text="Here you'll see clarification", width=20, height=10)
     # LabelHuge.place(x=90, y=300)
@@ -70,7 +69,17 @@ def loo_latina_tabel(letter):
               'Y':7, 'H':8, 'Q':8, 'Z':8, 'I':9,
               'R':9}
     return latina.get(letter)
-def Start():
+def calcula(letter_sum:int):
+    letter_sum_str = str(letter_sum)
+    if len(letter_sum_str) == 2:
+        letter_sum = int(letter_sum_str[0]) + int(letter_sum_str[1])
+    elif len(letter_sum_str) == 3:
+        letter_sum = int(letter_sum_str[0]) + int(letter_sum_str[1]) + int(letter_sum_str[2])
+    elif len(letter_sum_str) == 4:
+        letter_sum = int(letter_sum_str[0]) + int(letter_sum_str[1]) + int(letter_sum_str[2]) + int(letter_sum_str[3])
+    reply_message_box(letter_sum)
+def calculate():
+    global Name
     Name = Entry1.get()
     print(Name)
     Name = Name.lower()
@@ -82,16 +91,17 @@ def Start():
     if ENG_Count == 0 and Error == 0:
         for letter in range(len(Name)):
             letter_sum = letter_sum + loo_vene_tabel(Name[letter])
-            if letter_sum > 9:
-                calculate(letter_sum)
-                print(letter_sum)
-        reply_message_box(letter_sum)
+        if letter_sum < 10:
+            reply_message_box(letter_sum)
+        else:
+            calcula(letter_sum)
     elif RUS_Count == 0 and Error == 0:
         for letter in range(len(Name)):
             letter_sum = letter_sum + loo_latina_tabel(Name[letter])
-            if letter_sum > 9:
-                calculate(letter_sum)
-        reply_message_box(letter_sum)
+        if letter_sum > 9:
+            reply_message_box(letter_sum)
+        else:
+            calcula(letter_sum)
     elif RUS_Count > 0 and ENG_Count > 0 and Error == 0:
         letters = ""
         for letter in range(len(Name)):
@@ -101,16 +111,18 @@ def Start():
                 letters = letters + f'{loo_vene_tabel(Name[letter])}:{Name[letter]},'
         reply_message_box(letters)
 def reply_message_box(number):
-    messagebox.showinfo('Answer', number)
-def calculate(letter_sum):
-    letter_sum_str = str(letter_sum)
-    letter_sum_temp = 0
-    while letter_sum > 10:
-        for xy in range(len(letter_sum_str)):
-            letter_sum = letter_sum + int(letter_sum_str[xy])
-    return letter_sum
+    YesOrNo = messagebox.askquestion('Answer', f'Number: {number}. Do you want save results')
+    if YesOrNo:
+        salvesta_tulemus(Name, number)
 def salvesta_tulemus(nimi, number):
-    with open(r'C:\Users\LP1\source\repos\Zhan-Gabriel-Gerke\project-test\Programmeerimise alused\Programmeerimise alused\Grafika\Numberology_results.txt', "w", encoding="utf-8") as f:
-        TempVariable = nimi, number
+    with open(r'C:\Users\LP1\source\repos\Zhan-Gabriel-Gerke\project-test\Programmeerimise alused\Programmeerimise alused\Grafika\Numberology_results.txt', "a", encoding="utf-8") as f:
+        TempVariable = f"{nimi}:{number},\n"
         f.write(TempVariable)
+def show_results():
+    listtemp = []
+    with open(r'C:\Users\LP1\source\repos\Zhan-Gabriel-Gerke\project-test\Programmeerimise alused\Programmeerimise alused\Grafika\Numberology_results.txt', "r", encoding="utf-8") as f:
+        for lines in f:
+            line = lines.strip().split(",")
+            listtemp.append(line)
+    messagebox.showinfo('Previous results:', f'{listtemp}, ')
 tkwindow()
