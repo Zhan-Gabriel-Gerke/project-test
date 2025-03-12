@@ -91,14 +91,14 @@ def calculate():
     if ENG_Count == 0 and Error == 0:
         for letter in range(len(Name)):
             letter_sum = letter_sum + loo_vene_tabel(Name[letter])
-        if letter_sum < 10:
+        if letter_sum < 9:
             reply_message_box(letter_sum)
         else:
             calcula(letter_sum)
     elif RUS_Count == 0 and Error == 0:
         for letter in range(len(Name)):
             letter_sum = letter_sum + loo_latina_tabel(Name[letter])
-        if letter_sum > 9:
+        if letter_sum < 9:
             reply_message_box(letter_sum)
         else:
             calcula(letter_sum)

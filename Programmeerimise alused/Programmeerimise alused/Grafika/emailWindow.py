@@ -46,16 +46,15 @@ def write_to_file():
         TempVariable = f'{entry_email.get()}◆{entry_teema.get()}◇{entry_kiri.get("1.0", tk.END)}'
         f.write(TempVariable)
 def read_from_file():
-    global entry_email_var, entry_teema_var, entry_kiri_var
     file = r'C:\Users\LP1\source\repos\Zhan-Gabriel-Gerke\project-test\Programmeerimise alused\Programmeerimise alused\Grafika\on_exit.txt'
     with open(file, "r", encoding="utf-8") as f:
         data = f.read()
         n1 = data.find('◆')
         n2 = data.find('◇')
         entry_email_var, entry_teema_var, entry_kiri_var = data[0:n1].strip(), data[n1+1:n2].strip(), data[n2+1:len(data)].strip()
-        return entry_email_var, entry_teema_var, entry_kiri_var
+        #return entry_email_var, entry_teema_var, entry_kiri_var
 def before_start():
-    global entry_email_var, entry_teema_var, entry_kiri_var, entry_email, entry_kiri, entry_teema
+    global entry_email_var, entry_teema_var, entry_kiri_var
     file_path = r'C:\Users\LP1\source\repos\Zhan-Gabriel-Gerke\project-test\Programmeerimise alused\Programmeerimise alused\Grafika\on_exit.txt'
     if os.path.exists(file_path) and os.path.getsize(file_path) != 0:
         TrueOrFalse = messagebox.askyesno("A draft has been found", "Would you like to use a draft?")
