@@ -2,9 +2,32 @@ import tkinter as tk
 from tkinter import W, E, N, S, messagebox
 from PIL import Image, ImageTk
 from dbquery import *
+def clean_entry_create():
+    Name_Entry.delete(0, tk.END)
+    SurName_Entry.delete(0, tk.END)
+    Phone_Entry.delete(0, tk.END)
+    Email_Entry.delete(0, tk.END)
+    Password_Entry.delete(0, tk.END)
+    Password_retype_Entry.delete(0, tk.END)
+def get_entry_create():
+    Name_Entry_var = Name_Entry.get()
+    SurName_Entry_var = SurName_Entry.get()
+    Phone_Entry_var = Phone_Entry.get()
+    Email_Entry_var = Email_Entry.get()
+    Password_Entry_var = Password_Entry.get()
+    Password_retype_Entry_var = Password_retype_Entry.get()
+    if Password_Entry_var != Password_retype_Entry_var:
+        tk.messagebox.showerror("showerror", "The passwords are not same")
+    else:
+        Answer = insert_data(Name_Entry_var, SurName_Entry_var, Phone_Entry_var, Email_Entry_var, Password_Entry_var)
+        if Answer == True:
+            clean_entry_create()
+def clear_entry():
+    pass
 def show_frame(frame):
     frame.tkraise()
 def WindowsTK():
+    global Name_Entry, SurName_Entry, Phone_Entry, Email_Entry, Password_Entry, Password_retype_Entry
     window = tk.Tk()
     window.geometry('800x600')
     window.resizable(False, False)
@@ -67,5 +90,7 @@ def WindowsTK():
     contain more that one Uppercase and Lowercase letters. 
     And it have include more than one specific symbol""")
     Password_requirements_Label.place(x=100, y=400)
+    Create_button = tk.Button(frame_create, bg='lightgray', text='Create', font=('Arial', 15, 'bold'), command=get_entry_create)
+    Create_button.place(x=300, y=500)
     show_frame(frame_start)
     window.mainloop()
