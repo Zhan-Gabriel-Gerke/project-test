@@ -12,14 +12,23 @@ def opendb():
 # Phone TEXT,
 # Email VARCHAR(30) UNIQUE,
 # Password TEXT);""")
+def create_custom_table(email):
+    opendb()
+    sql = f""" CREATE TABLE IF NOT EXISTS {email}(
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    UserNameOrEmail VARCHAR(30),
+    Password VARCHAR(30),
+    Link TEXT,
+    Notes TEXT);"""
+    curs.execute(sql)
 def insert_data(Name, SurName, Phone, Email, Password):
     opendb()
     try:
-        curs.execute(
-            "INSERT INTO users (Name, SurName, Phone, Email, Password) VALUES(?, ?, ?, ?, ?)",
-            (str(Name), str(SurName), str(Phone), str(Email), str(Password))
-        )
+        sql = f"""INSERT INTO users (Name, SurName, Phone, Email, Password)
+        VALUES('{Name}', '{SurName}', '{Phone}', '{Email}', '{Password}')"""
+        curs.execute(sql)
         conn.commit()
+        create_custom_table(Email)
         return True
     except sqlite3.Error as e:
         tk.messagebox.showerror("showerror", e)
@@ -31,4 +40,4 @@ def close():
     conn.close()
 #insert_data("Zhan", "Gabriel", "1234567890", "zhan@tthk.ee", "securepassword")
 # data = select_data()
-# print(data) 
+# print(data)
