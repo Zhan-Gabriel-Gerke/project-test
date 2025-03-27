@@ -1,8 +1,18 @@
-﻿latina = {'A':1, 'J':1, 'S':1, 'B':2, 'K':2,
-        'T':2, 'C':3, 'L':3, 'U':3, 'D':4,
-        'M':4, 'V':4, 'E':5, 'N':5, 'W':5,
-        'F':6, 'O':6, 'X':6, 'G':7, 'P':7,
-        'Y':7, 'H':8, 'Q':8, 'Z':8, 'I':9,
-        'R':9}
-test = latina.get('R')
-print(test)
+﻿import tkinter as tk
+
+def double_click(event):
+    selected_index = listbox.curselection()
+    if selected_index:
+        selected_index = listbox.get(selected_index[0])
+        label.config(text=f'Selected: {selected_index}')
+root = tk.Tk()
+root.title("Listbox with double klick")
+listbox = tk.Listbox(root, height=5)
+listbox.pack()
+items = ['Apple', 'Banana', 'Orange', 'Pear']
+for item in items:
+    listbox.insert(tk.END, item)
+listbox.bind("<Double-Button-1>", double_click)
+label = tk.Label(root, text='Selected: ')
+label.pack()
+root.mainloop()
