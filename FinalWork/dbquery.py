@@ -64,11 +64,12 @@ def select_password(UserName):
             """
             curs.execute(sql)
             pswd = curs.fetchall()
-            pswd = pswd[0]
-            lenpswd = len(pswd)
-            pswd = pswd[lenpswd - 2]# Тут можно спросить
-            return pswd
-        except sqlite3.Error as e:
+            if len(pswd) != 0:
+                pswd = pswd[0]
+                lenpswd = len(pswd)
+                pswd = pswd[lenpswd - 2]# Тут можно спросить
+                return pswd
+        except ValueError as e:
             tk.messagebox.showerror("show error", e)
         close()
 #insert_data("Zhan", "Gabriel", "1234567890", "zhan@tthk.ee", "securepassword")
@@ -84,3 +85,17 @@ def add_data_to_table(current_user,UserName, Password, Link, Notes):
         return True
     except sqlite3.Error as e:
         tk.messagebox.showerror("showerror def add_data_to_table", e)
+def change_data(current_user, UserNameOrEmail, Password, Link, Notes, ID):
+    opendb()
+    try:
+        sql = f"""UPDATE {current_user} 
+        SET UserNameOrEmail='{UserNameOrEmail}', 
+        Password='{Password}', 
+        Link='{Link}', 
+        Notes='{Notes}'
+        WHERE ID={ID}"""
+        curs.execute(sql)
+        conn.commit()
+    except ValueError as e:
+        tk.messagebox.showerror("show error", e)
+    close()

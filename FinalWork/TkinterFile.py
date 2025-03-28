@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import W, E, N, S, messagebox
+from token import COMMA
 from PIL import Image, ImageTk
 from dbquery import *
 def clean_entry_create():
@@ -27,6 +28,17 @@ def get_entry_create():
         if check_email(Email_Entry_var) == False:
             tk.messagebox.showerror("showerror", "wrong email")
         else:
+            ListOfSymbols = ['!','@','#','$','%','^','&','*','(',')','_','+','=','-']
+            if len(Password_Entry_var) > 10:
+                UpCase, LwCase, SpSymbol = None, None, None
+                for x in range(len(Password_Entry_var)):
+                    if Password_Entry_var[x].isupper():
+                        UpCase = True
+                    if Password_Entry_var[x].islower():
+                        LwCase = True
+                    if Password_Entry_var[x] in ListOfSymbols:
+                        SpSymbol = True
+        if LwCase == True and UpCase == True and SpSymbol == True:
             Answer = insert_data(SurName_Entry_var, Phone_Entry_var, Email_Entry_var, Password_Entry_var)
             if Answer == True:
                 clean_entry_create()
@@ -85,17 +97,46 @@ def double_click(event):
         #     tk.messagebox.showerror('Error','Error def double_click')
 def listbox_def():
     global label, listbox
-    listbox = tk.Listbox(frame_data)
+    listbox = tk.Listbox(frame_data, width=55, height=37)
     listbox.place(x=0, y=0)
     for item in listbox_list:
         listbox.insert(tk.END, item)
     listbox.bind("<Double-Button-1>", double_click)
     # label = tk.Label(frame_data, text='Selected: ')
     # label.place(x=200, y=200)
+def back_to_frame_data():
+    data = select_data(current_user)
+    group_data(data)
+    listbox_def()
+    show_frame(frame_data)
+    UserName_Data_Lable_DATA.config(text='...')
+    PSWD_Data_Lable_DATA.config(text='...')
+    Link_Lable_DATA.config(text='...')
+    Notes_Lable_DATA.config(text='...')
+def log_out():
+    show_frame(frame_start)
+    UserName_Data_Lable_DATA.config(text='...')
+    PSWD_Data_Lable_DATA.config(text='...')
+    Link_Lable_DATA.config(text='...')
+    Notes_Lable_DATA.config(text='...')
+def create_account_crate_frame():
+    UserName_var = UserName_Create_Entry.get()
+    PSWD_var = PSWD_Create_Entry.get()
+    Link_var = Link_Create_Entry.get()
+    Notes_var = Notes_Create_Entry.get()
+    if len(UserName_var) < 1 or len(PSWD_var) < 1:
+        tk.messagebox.showerror('Error', "Wrong UserName or Password")
+    else:
+        YorN = add_data_to_table(current_user, UserName_var, PSWD_var, Link_var, Notes_var)
+        if YorN == True:
+            tk.messagebox.showinfo('Info', 'Account has been created')
+        else:
+            tk.messagebox.showerror('Error', "Account hasn't been created")
 def WindowsTK():
     global UserName_Entry, Phone_Entry, Email_Entry, Password_Entry, Password_retype_Entry, frame_start, frame_data
     global UserName_LogIn_Entry, Password_LogIn_Entry
     global listbox, label, UserName_Data_Lable_DATA, PSWD_Data_Lable_DATA, Link_Lable_DATA, Notes_Lable_DATA
+    global UserName_Create_Entry, PSWD_Create_Entry, Link_Create_Entry, Notes_Create_Entry
     window = tk.Tk()
     window.geometry('800x600')
     window.resizable(False, False)
@@ -109,7 +150,8 @@ def WindowsTK():
     frame_log_in = tk.Frame(container)
     frame_start = tk.Frame(container)
     frame_data = tk.Frame(container)
-    for frame in (frame_create, frame_log_in, frame_start, frame_data):
+    frame_add_account = tk.Frame(container)
+    for frame in (frame_create, frame_log_in, frame_start, frame_data, frame_add_account):
         frame.place(relwidth=1, relheight=1)
     labelBG= tk.Label(frame_start,image=bgimage)
     labelBG.place(x=0,y=0)
@@ -118,6 +160,8 @@ def WindowsTK():
     labelBG= tk.Label(frame_create,image=bgimage)
     labelBG.place(x=0,y=0)
     labelBG= tk.Label(frame_data,image=bgimage)
+    labelBG.place(x=0,y=0)
+    labelBG= tk.Label(frame_add_account,image=bgimage)
     labelBG.place(x=0,y=0)
     welcome_lable = tk.Label(frame_start, bg='gray', text='PassKeeper', font=('Arial', 30, 'bold'))
     welcome_lable.place(x=300, y=80)
@@ -155,7 +199,8 @@ def WindowsTK():
     Password_retype_Entry.place(x=200, y=350)
     Password_requirements_Label = tk.Label(frame_create, bg='gray', font=('Arial', 15, 'bold'), text="""The Password must have more that 10 characters. 
     contain more that one Uppercase and Lowercase letters. 
-    And it have include more than one specific symbol""")
+    And it have include more than one specific symbol
+              Symbols : (!@#$%^&*()_+=-)""")
     Password_requirements_Label.place(x=100, y=400)
     Create_button = tk.Button(frame_create, bg='lightgray', text='Create', font=('Arial', 15, 'bold'), command=get_entry_create)
     Create_button.place(x=300, y=500)
@@ -170,22 +215,47 @@ def WindowsTK():
     LogIn_Button = tk.Button(frame_log_in, bg='gray', font=('Arial', 15, 'bold'), text='Log In', command=log_in)
     LogIn_Button.place(x=300, y=300)
     UserName_Baner_Data_Lable = tk.Label(frame_data, bg='gray', font=('Arial', 15, 'bold'), text='Username:')
-    UserName_Baner_Data_Lable.place(x=150, y=200)
+    UserName_Baner_Data_Lable.place(x=350, y=200)
     UserName_Data_Lable = tk.Label(frame_data, bg='gray', font=('Arial', 15, 'bold'), text='Password:')
-    UserName_Data_Lable.place(x=150, y=250)
+    UserName_Data_Lable.place(x=350, y=250)
     Link_Lable = tk.Label(frame_data, bg='gray', font=('Arial', 15, 'bold'), text='Link:')
-    Link_Lable.place(x=150, y=300)
+    Link_Lable.place(x=350, y=300)
     Notes_Lable = tk.Label(frame_data, bg='gray', font=('Arial', 15, 'bold'), text='Notes:')
-    Notes_Lable.place(x=150, y=350)
+    Notes_Lable.place(x=350, y=350)
     UserName_Data_Lable_DATA = tk.Label(frame_data, bg='lightgray', font=('Arial', 15, 'bold'), text='...', width=20)
-    UserName_Data_Lable_DATA.place(x=300, y=200)
+    UserName_Data_Lable_DATA.place(x=500, y=200)
     PSWD_Data_Lable_DATA = tk.Label(frame_data, bg='lightgray', font=('Arial', 15, 'bold'), text='...', width=20)
-    PSWD_Data_Lable_DATA.place(x=300, y=250)
+    PSWD_Data_Lable_DATA.place(x=500, y=250)
     Link_Lable_DATA = tk.Label(frame_data, bg='lightgray', font=('Arial', 15, 'bold'), text='...', width=20)
-    Link_Lable_DATA.place(x=300, y=300)
+    Link_Lable_DATA.place(x=500, y=300)
     Notes_Lable_DATA = tk.Label(frame_data, bg='lightgray', font=('Arial', 15, 'bold'), text='...', width=20)
-    Notes_Lable_DATA.place(x=300, y=350)
-    LogOut_Button = tk.Button(frame_data, bg='gray', font=('Arial', 15, 'bold'), text='Log Out', command=lambda: show_frame(frame_start))
+    Notes_Lable_DATA.place(x=500, y=350)
+    LogOut_Button = tk.Button(frame_data, bg='gray', font=('Arial', 15, 'bold'), text='Log Out', command=log_out)
     LogOut_Button.place(x=680, y=530)
+    Add_Account = tk.Button(frame_data, bg='gray', font=('Arial', 15, 'bold'), text='Add Account', command=lambda: show_frame(frame_add_account))
+    Add_Account.place(x=400, y=530)
+    #Frame Add Account
+    Banner_Create_Label = tk.Label(frame_add_account, bg='gray', font=('Arial', 15, 'bold'), text='Enter data')
+    Banner_Create_Label.place(x=350, y=50)
+    UserName_Baner_Create_Lable = tk.Label(frame_add_account, bg='gray', font=('Arial', 15, 'bold'), text='Username:')
+    UserName_Baner_Create_Lable.place(x=150, y=200)
+    UserName_Create_Lable = tk.Label(frame_add_account, bg='gray', font=('Arial', 15, 'bold'), text='Password:')
+    UserName_Create_Lable.place(x=150, y=250)
+    Link_Create_Lable = tk.Label(frame_add_account, bg='gray', font=('Arial', 15, 'bold'), text='Link:')
+    Link_Create_Lable.place(x=150, y=300)
+    Notes_Create_Lable = tk.Label(frame_add_account, bg='gray', font=('Arial', 15, 'bold'), text='Notes:')
+    Notes_Create_Lable.place(x=150, y=350)
+    UserName_Create_Entry = tk.Entry(frame_add_account, bg='lightgray', font=('Arial', 15, 'bold'), width=20)
+    UserName_Create_Entry.place(x=300, y=200)
+    PSWD_Create_Entry = tk.Entry(frame_add_account, bg='lightgray', font=('Arial', 15, 'bold'), width=20)
+    PSWD_Create_Entry.place(x=300, y=250)
+    Link_Create_Entry = tk.Entry(frame_add_account, bg='lightgray', font=('Arial', 15, 'bold'), width=20)
+    Link_Create_Entry.place(x=300, y=300)
+    Notes_Create_Entry = tk.Entry(frame_add_account, bg='lightgray', font=('Arial', 15, 'bold'), width=20)
+    Notes_Create_Entry.place(x=300, y=350)
+    Create_Account_Create_Button = tk.Button(frame_add_account ,text='Create Account' ,bg='gray', font=('Arial', 15, 'bold'), command=create_account_crate_frame)
+    Create_Account_Create_Button.place(x=320, y=420)
+    Back_Create_Button = tk.Button(frame_add_account, text='Back', bg='gray', font=('Arial', 15, 'bold'), command=back_to_frame_data)
+    Back_Create_Button.place(x=700, y=540)
     show_frame(frame_start)
     window.mainloop()
