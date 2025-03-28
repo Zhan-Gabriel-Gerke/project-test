@@ -46,9 +46,15 @@ def log_in():
         show_frame(frame_data)
     else:
         tk.messagebox.showerror('Error', 'Wrong username or password')
+def double_click(event):
+    selected_index = listbox.curselection()
+    if selected_index:
+        selected_index = listbox.get(selected_index[0])
+        label.config(text=f'Selected: {selected_index}')
 def WindowsTK():
     global UserName_Entry, Phone_Entry, Email_Entry, Password_Entry, Password_retype_Entry, frame_start, frame_data
     global UserName_LogIn_Entry, Password_LogIn_Entry
+    global listbox, label
     window = tk.Tk()
     window.geometry('800x600')
     window.resizable(False, False)
@@ -122,5 +128,13 @@ def WindowsTK():
     Password_LogIn_Entry.place(x=220, y=230)
     LogIn_Button = tk.Button(frame_log_in, bg='gray', font=('Arial', 15, 'bold'), text='Log In', command=log_in)
     LogIn_Button.place(x=300, y=300)
+    listbox = tk.Listbox(frame_data)
+    listbox.place(x=0, y=0)
+    items = ['One', 'Two', 'Three', 'Four']
+    for item in items:
+        listbox.insert(tk.END, item)
+    listbox.bind("<Double-Button-1>", double_click)
+    label = tk.Label(frame_data, text='Selected: ')
+    label.place(x=200, y=200)
     show_frame(frame_start)
     window.mainloop()
