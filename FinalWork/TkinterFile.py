@@ -40,21 +40,62 @@ def get_entry_logIn():
     UserName_LogIn_Entry.delete(0, tk.END)
     Password_LogIn_Entry.delete(0, tk.END)
     return UserName_LogIn_Entry_var, Password_LogIn_Entry_var
+def group_data(data):
+    global link_list, UserName_list, id_list, listbox_list
+    link_list, UserName_list, id_list, listbox_list = [], [], [], []
+    for x in range(len(data)):
+        list_list = data[x]
+        ID = list_list[0]
+        id_list.append(ID)
+        UserName = list_list[1]
+        UserName_list.append(UserName)
+        Link = list_list[3]
+        link_list.append(link_list)
+        listbox = f'{UserName}; {Link}'
+        listbox_list.append(listbox)
 def log_in():
+    global current_user
     UserName_LogIn_Entry_var, Password_LogIn_Entry_var = get_entry_logIn()
     if Password_LogIn_Entry_var == select_password(UserName_LogIn_Entry_var):
         show_frame(frame_data)
+        current_user = UserName_LogIn_Entry_var
+        data = select_data(current_user)
+        group_data(data)
+        listbox_def()
     else:
         tk.messagebox.showerror('Error', 'Wrong username or password')
+def creare_frame_data(data):
+    data = data[0]
+    UserName_Data_Lable_DATA.config(text=data[1])
+    PSWD_Data_Lable_DATA.config(text=data[2])
+    Link_Lable_DATA.config(text=data[3])
+    Notes_Lable_DATA.config(text=data[4])
 def double_click(event):
     selected_index = listbox.curselection()
     if selected_index:
         selected_index = listbox.get(selected_index[0])
-        label.config(text=f'Selected: {selected_index}')
+        # label.config(text=f'Selected: {selected_index}')
+        temp_var = selected_index.split(';')
+        for x in range(len(UserName_list)):
+            if temp_var[0] == UserName_list[x]:
+                User_ID = x + 1
+                data = select_data_by_id(current_user, User_ID)
+                creare_frame_data(data)
+        # else:
+        #     tk.messagebox.showerror('Error','Error def double_click')
+def listbox_def():
+    global label, listbox
+    listbox = tk.Listbox(frame_data)
+    listbox.place(x=0, y=0)
+    for item in listbox_list:
+        listbox.insert(tk.END, item)
+    listbox.bind("<Double-Button-1>", double_click)
+    # label = tk.Label(frame_data, text='Selected: ')
+    # label.place(x=200, y=200)
 def WindowsTK():
     global UserName_Entry, Phone_Entry, Email_Entry, Password_Entry, Password_retype_Entry, frame_start, frame_data
     global UserName_LogIn_Entry, Password_LogIn_Entry
-    global listbox, label
+    global listbox, label, UserName_Data_Lable_DATA, PSWD_Data_Lable_DATA, Link_Lable_DATA, Notes_Lable_DATA
     window = tk.Tk()
     window.geometry('800x600')
     window.resizable(False, False)
@@ -128,13 +169,23 @@ def WindowsTK():
     Password_LogIn_Entry.place(x=220, y=230)
     LogIn_Button = tk.Button(frame_log_in, bg='gray', font=('Arial', 15, 'bold'), text='Log In', command=log_in)
     LogIn_Button.place(x=300, y=300)
-    listbox = tk.Listbox(frame_data)
-    listbox.place(x=0, y=0)
-    items = ['One', 'Two', 'Three', 'Four']
-    for item in items:
-        listbox.insert(tk.END, item)
-    listbox.bind("<Double-Button-1>", double_click)
-    label = tk.Label(frame_data, text='Selected: ')
-    label.place(x=200, y=200)
+    UserName_Baner_Data_Lable = tk.Label(frame_data, bg='gray', font=('Arial', 15, 'bold'), text='Username:')
+    UserName_Baner_Data_Lable.place(x=150, y=200)
+    UserName_Data_Lable = tk.Label(frame_data, bg='gray', font=('Arial', 15, 'bold'), text='Password:')
+    UserName_Data_Lable.place(x=150, y=250)
+    Link_Lable = tk.Label(frame_data, bg='gray', font=('Arial', 15, 'bold'), text='Link:')
+    Link_Lable.place(x=150, y=300)
+    Notes_Lable = tk.Label(frame_data, bg='gray', font=('Arial', 15, 'bold'), text='Notes:')
+    Notes_Lable.place(x=150, y=350)
+    UserName_Data_Lable_DATA = tk.Label(frame_data, bg='lightgray', font=('Arial', 15, 'bold'), text='...', width=20)
+    UserName_Data_Lable_DATA.place(x=300, y=200)
+    PSWD_Data_Lable_DATA = tk.Label(frame_data, bg='lightgray', font=('Arial', 15, 'bold'), text='...', width=20)
+    PSWD_Data_Lable_DATA.place(x=300, y=250)
+    Link_Lable_DATA = tk.Label(frame_data, bg='lightgray', font=('Arial', 15, 'bold'), text='...', width=20)
+    Link_Lable_DATA.place(x=300, y=300)
+    Notes_Lable_DATA = tk.Label(frame_data, bg='lightgray', font=('Arial', 15, 'bold'), text='...', width=20)
+    Notes_Lable_DATA.place(x=300, y=350)
+    LogOut_Button = tk.Button(frame_data, bg='gray', font=('Arial', 15, 'bold'), text='Log Out', command=lambda: show_frame(frame_start))
+    LogOut_Button.place(x=680, y=530)
     show_frame(frame_start)
     window.mainloop()

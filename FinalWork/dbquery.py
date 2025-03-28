@@ -1,4 +1,5 @@
-﻿import sqlite3
+﻿from math import e
+import sqlite3
 import tkinter as tk
 from tkinter import messagebox
 def opendb():
@@ -14,15 +15,6 @@ def create_custom_table(Username):
     Link TEXT,
     Notes TEXT);"""
     curs.execute(sql)
-def select_users():
-    opendb()
-    try:
-        #sql = 
-        #curs.execute(sql)
-        #conn.commit()
-        pass
-    except sqlite3.Error as e:
-        tk.messagebox.showerror("showerror", e)
 def insert_data(UserName, Phone, Email, Password):
     opendb()
     try:
@@ -35,9 +27,23 @@ def insert_data(UserName, Phone, Email, Password):
     except sqlite3.Error as e:
         tk.messagebox.showerror("showerror def insert_data", e)
     close()
-def select_data():
-    curs.execute("SELECT * FROM users")
-    return curs.fetchall()
+def select_data_by_id(current_user, User_ID):
+    opendb()
+    try:
+        sql = f"""SELECT * FROM {current_user}
+        WHERE ID = {User_ID}"""
+        curs.execute(sql)
+        return curs.fetchall()
+    except sqlite3.Error as e:
+        tk.messagebox.showerror("showerror def selected_data_by_id", e)
+def select_data(current_user):
+    opendb()
+    try:
+        sql = f"SELECT * FROM {current_user}"
+        curs.execute(sql)
+        return curs.fetchall()
+    except sqlite3.Error as e:
+        tk.messagebox.showerror("showerror def select_data", e)
 def close():
     conn.close()
 def create_new_list():
@@ -68,3 +74,13 @@ def select_password(UserName):
 #insert_data("Zhan", "Gabriel", "1234567890", "zhan@tthk.ee", "securepassword")
 # data = select_data()
 # print(data)
+def add_data_to_table(current_user,UserName, Password, Link, Notes):
+    opendb()
+    try:
+        sql = (f"""INSERT INTO {current_user} (UserNameOrEmail, Password, Link, Notes)
+        VALUES('{UserName}', '{Password}', '{Link}','{Notes}')""")
+        curs.execute(sql)
+        conn.commit()
+        return True
+    except sqlite3.Error as e:
+        tk.messagebox.showerror("showerror def add_data_to_table", e)
