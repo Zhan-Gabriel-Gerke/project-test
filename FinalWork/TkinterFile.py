@@ -76,6 +76,9 @@ def log_in():
         listbox_def()
     else:
         tk.messagebox.showerror('Error', 'Wrong username or password')
+def edit_data_button():
+    Edit_data_Button = tk.Button(frame_data,text='Edit', font=('Arial', 15, 'bold'), bg='gray', command=)
+    Edit_data_Button.place(x=300, y=300)
 def creare_frame_data(data):
     data = data[0]
     UserName_Data_Lable_DATA.config(text=data[1])
@@ -137,13 +140,16 @@ def WindowsTK():
     global UserName_LogIn_Entry, Password_LogIn_Entry
     global listbox, label, UserName_Data_Lable_DATA, PSWD_Data_Lable_DATA, Link_Lable_DATA, Notes_Lable_DATA
     global UserName_Create_Entry, PSWD_Create_Entry, Link_Create_Entry, Notes_Create_Entry
+    #create root window
     window = tk.Tk()
     window.geometry('800x600')
     window.resizable(False, False)
     window.title('PassSaver')
+    #background
     original_image = Image.open(r"C:\Users\zange\source\repos\Zhan-Gabriel-Gerke\project-test\FinalWork\background.jpg")
     resized_image = original_image.resize((800, 600))
     bgimage = ImageTk.PhotoImage(resized_image)
+    #create Frames
     container = tk.Frame(window)
     container.pack(fill="both", expand=True)
     frame_create = tk.Frame(container)
@@ -153,6 +159,7 @@ def WindowsTK():
     frame_add_account = tk.Frame(container)
     for frame in (frame_create, frame_log_in, frame_start, frame_data, frame_add_account):
         frame.place(relwidth=1, relheight=1)
+    #background
     labelBG= tk.Label(frame_start,image=bgimage)
     labelBG.place(x=0,y=0)
     labelBG= tk.Label(frame_log_in,image=bgimage)
@@ -163,18 +170,21 @@ def WindowsTK():
     labelBG.place(x=0,y=0)
     labelBG= tk.Label(frame_add_account,image=bgimage)
     labelBG.place(x=0,y=0)
+    #frame_start
     welcome_lable = tk.Label(frame_start, bg='gray', text='PassKeeper', font=('Arial', 30, 'bold'))
     welcome_lable.place(x=300, y=80)
     Button_create = tk.Button(frame_start, text='Create new account', font=('Arial', 15, 'bold'), bg='gray', command=lambda: show_frame(frame_create))
     Button_create.place(x=320, y=200)
     Button_log_in = tk.Button(frame_start, text='Log In', font=('Arial', 15, 'bold'), bg='gray', command=lambda: show_frame(frame_log_in))
     Button_log_in.place(x=380, y=250)
+    #frame_log_in
     log_in_lable = tk.Label(frame_log_in, bg='gray', text='Log In', font=('Arial', 30, 'bold'))
     log_in_lable.place(x=350, y=50)
     create_new_accoun_lable = tk.Label(frame_create, bg='gray', text='Create new account', font=('Arial', 30, 'bold'))
     create_new_accoun_lable.place(x=250, y=50)
     Button_back_login = tk.Button(frame_log_in, text='Back', font=('Arial', 15, 'bold'), bg='gray', command=lambda: show_frame(frame_start))
     Button_back_login.place(x=700, y=550)
+    #frame_create
     Button_back_login = tk.Button(frame_create, text='Back', font=('Arial', 15, 'bold'), bg='gray', command=lambda: show_frame(frame_start))
     Button_back_login.place(x=700, y=550)
     Username_Lable = tk.Label(frame_create, text='Username', font=('Arial', 15, 'bold'), bg='gray')
@@ -204,6 +214,7 @@ def WindowsTK():
     Password_requirements_Label.place(x=100, y=400)
     Create_button = tk.Button(frame_create, bg='lightgray', text='Create', font=('Arial', 15, 'bold'), command=get_entry_create)
     Create_button.place(x=300, y=500)
+    #frame_log_in
     UserName_LogIn_Label = tk.Label(frame_log_in, bg='gray', text='UserName', font=('Arial', 15, 'bold'))
     UserName_LogIn_Label.place(x=100, y=200)
     UserName_LogIn_Entry = tk.Entry(frame_log_in, bg='lightgray', font=('Arial',15, 'bold'))
@@ -214,6 +225,7 @@ def WindowsTK():
     Password_LogIn_Entry.place(x=220, y=230)
     LogIn_Button = tk.Button(frame_log_in, bg='gray', font=('Arial', 15, 'bold'), text='Log In', command=log_in)
     LogIn_Button.place(x=300, y=300)
+    #frame_data
     UserName_Baner_Data_Lable = tk.Label(frame_data, bg='gray', font=('Arial', 15, 'bold'), text='Username:')
     UserName_Baner_Data_Lable.place(x=350, y=200)
     UserName_Data_Lable = tk.Label(frame_data, bg='gray', font=('Arial', 15, 'bold'), text='Password:')
