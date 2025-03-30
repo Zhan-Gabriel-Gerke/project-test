@@ -86,6 +86,7 @@ def add_data_to_table(current_user,UserName, Password, Link, Notes):
     except sqlite3.Error as e:
         tk.messagebox.showerror("showerror def add_data_to_table", e)
 def change_data(current_user, UserNameOrEmail, Password, Link, Notes, ID):
+    print(current_user, UserNameOrEmail, Password, Link, Notes, ID)
     opendb()
     try:
         sql = f"""UPDATE {current_user} 

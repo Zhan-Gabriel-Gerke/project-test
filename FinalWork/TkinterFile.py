@@ -76,15 +76,56 @@ def log_in():
         listbox_def()
     else:
         tk.messagebox.showerror('Error', 'Wrong username or password')
-def edit_data_button():
-    Edit_data_Button = tk.Button(frame_data,text='Edit', font=('Arial', 15, 'bold'), bg='gray', command=)
-    Edit_data_Button.place(x=300, y=300)
+def change_data_activator():
+    ID = current_data[0]
+    Username = UserName_edit_Entry.get()
+    Password = Password_edit_Entry.get()
+    Notes = Notes_edit_Entry.get()
+    Link = Link_edit_Entry.get()
+    #change_data(current_user, current_data[1], current_data[2], current_data[3], current_data[4], current_data[0])
+    change_data(current_user, Username, Password, Link, Notes, ID)
+    tk.messagebox.showinfo('Info', 'Data has been updated')
+    back_to_frame_data()
+def edit_active():
+    global UserName_edit_Entry, Password_edit_Entry, Notes_edit_Entry, Link_edit_Entry
+    try:
+        if current_data:
+            show_frame(frame_edit_data)
+            Username_Lable = tk.Label(frame_edit_data, text='Username', font=('Arial', 15, 'bold'), bg='gray')
+            Username_Lable.place(x=100, y=230)
+            Link_Lable = tk.Label(frame_edit_data, text='Link', font=('Arial', 15, 'bold'), bg='gray')
+            Link_Lable.place(x=100, y=260)
+            Password_Lable = tk.Label(frame_edit_data, text='Password', font=('Arial', 15, 'bold'), bg='gray')
+            Password_Lable.place(x=100, y=290)
+            Notes_Lable = tk.Label(frame_edit_data, text='Notes', font=('Arial', 15, 'bold'), bg='gray')
+            Notes_Lable.place(x=100, y=320)
+            UserName_edit_Entry = tk.Entry(frame_edit_data, bg='lightgray', font=('Arial',15,'bold'))
+            UserName_edit_Entry.place(x=200, y=230)
+            Link_edit_Entry = tk.Entry(frame_edit_data, bg='lightgray', font=('Arial',15,'bold'))
+            Link_edit_Entry.place(x=200, y=260)
+            Password_edit_Entry = tk.Entry(frame_edit_data, bg='lightgray', font=('Arial',15,'bold'))
+            Password_edit_Entry.place(x=200, y=290)
+            Notes_edit_Entry = tk.Entry(frame_edit_data, bg='lightgray', font=('Arial',15,'bold'))
+            Notes_edit_Entry.place(x=200, y=320)
+            UserName_edit_Entry.insert(0, current_data[1])
+            Link_edit_Entry.insert(0, current_data[3])
+            Password_edit_Entry.insert(0,current_data[2])
+            Notes_edit_Entry.insert(0,current_data[4])
+            Save_Button = tk.Button(frame_edit_data, bg='gray', font=('Arial', 15, 'bold'), text='Save', command=change_data_activator)
+            Save_Button.place(x=100, y=350)
+            Back_Button = tk.Button(frame_edit_data, bg='gray', font=('Arial', 15, 'bold'), text='Back', command=back_to_frame_data)
+            Back_Button.place(x=200, y=350)
+    except:
+        tk.messagebox.showerror('Error', "You haven't chosen a record")
+    #change_data(current_user, UserNameOrEmail, Password, Link, Notes, ID)
 def creare_frame_data(data):
+    global Edit_data_Button, current_data
     data = data[0]
     UserName_Data_Lable_DATA.config(text=data[1])
     PSWD_Data_Lable_DATA.config(text=data[2])
     Link_Lable_DATA.config(text=data[3])
     Notes_Lable_DATA.config(text=data[4])
+    current_data = data
 def double_click(event):
     selected_index = listbox.curselection()
     if selected_index:
@@ -122,6 +163,7 @@ def log_out():
     PSWD_Data_Lable_DATA.config(text='...')
     Link_Lable_DATA.config(text='...')
     Notes_Lable_DATA.config(text='...')
+    #Edit_data_Button.destroy()
 def create_account_crate_frame():
     UserName_var = UserName_Create_Entry.get()
     PSWD_var = PSWD_Create_Entry.get()
@@ -136,10 +178,10 @@ def create_account_crate_frame():
         else:
             tk.messagebox.showerror('Error', "Account hasn't been created")
 def WindowsTK():
-    global UserName_Entry, Phone_Entry, Email_Entry, Password_Entry, Password_retype_Entry, frame_start, frame_data
+    global UserName_Entry, Phone_Entry, Email_Entry, Password_Entry, Password_retype_Entry, frame_start, frame_data, frame_edit_data
     global UserName_LogIn_Entry, Password_LogIn_Entry
     global listbox, label, UserName_Data_Lable_DATA, PSWD_Data_Lable_DATA, Link_Lable_DATA, Notes_Lable_DATA
-    global UserName_Create_Entry, PSWD_Create_Entry, Link_Create_Entry, Notes_Create_Entry
+    global UserName_Create_Entry, PSWD_Create_Entry, Link_Create_Entry, Notes_Create_Entry, Edit_data_Button
     #create root window
     window = tk.Tk()
     window.geometry('800x600')
@@ -157,7 +199,8 @@ def WindowsTK():
     frame_start = tk.Frame(container)
     frame_data = tk.Frame(container)
     frame_add_account = tk.Frame(container)
-    for frame in (frame_create, frame_log_in, frame_start, frame_data, frame_add_account):
+    frame_edit_data = tk.Frame(container)
+    for frame in (frame_create, frame_log_in, frame_start, frame_data, frame_add_account, frame_edit_data):
         frame.place(relwidth=1, relheight=1)
     #background
     labelBG= tk.Label(frame_start,image=bgimage)
@@ -169,6 +212,8 @@ def WindowsTK():
     labelBG= tk.Label(frame_data,image=bgimage)
     labelBG.place(x=0,y=0)
     labelBG= tk.Label(frame_add_account,image=bgimage)
+    labelBG.place(x=0,y=0)
+    labelBG= tk.Label(frame_edit_data,image=bgimage)
     labelBG.place(x=0,y=0)
     #frame_start
     welcome_lable = tk.Label(frame_start, bg='gray', text='PassKeeper', font=('Arial', 30, 'bold'))
@@ -246,6 +291,8 @@ def WindowsTK():
     LogOut_Button.place(x=680, y=530)
     Add_Account = tk.Button(frame_data, bg='gray', font=('Arial', 15, 'bold'), text='Add Account', command=lambda: show_frame(frame_add_account))
     Add_Account.place(x=400, y=530)
+    Edit_data_Button = tk.Button(frame_data,text='Edit', font=('Arial', 15, 'bold'), bg='gray', command=edit_active)
+    Edit_data_Button.place(x=350, y=400)
     #Frame Add Account
     Banner_Create_Label = tk.Label(frame_add_account, bg='gray', font=('Arial', 15, 'bold'), text='Enter data')
     Banner_Create_Label.place(x=350, y=50)
