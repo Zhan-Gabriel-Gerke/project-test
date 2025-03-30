@@ -31,7 +31,7 @@ def get_entry_create():
             print('1')
             ListOfSymbols = ['!','@','#','$','%','^','&','*','(',')','_','+','=','-']
             UpCase, LwCase, SpSymbol = None, None, None
-            if len(Password_Entry_var) > 10:
+            if len(Password_Entry_var) >= 10:
                 for x in range(len(Password_Entry_var)):
                     if Password_Entry_var[x].isupper():
                         UpCase = True
