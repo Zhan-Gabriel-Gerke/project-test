@@ -1,4 +1,4 @@
-import tkinter as tk
+﻿import tkinter as tk
 from tkinter import W, E, N, S, messagebox
 from PIL import Image, ImageTk
 from dbquery import *
@@ -17,7 +17,7 @@ def check_email(email):
             break
     return Answer
 def get_entry_create():
-    SurName_Entry_var = UserName_Entry.get().strip()
+    SurName_Entry_var = UserName_Entry.get().strip()#Незьзя юзать @ в имене
     Phone_Entry_var = Phone_Entry.get().strip()
     Email_Entry_var = Email_Entry.get().strip()
     Password_Entry_var = Password_Entry.get().strip()
