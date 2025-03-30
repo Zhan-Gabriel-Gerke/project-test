@@ -28,7 +28,6 @@ def get_entry_create():
         if check_email(Email_Entry_var) == False:
             tk.messagebox.showerror("showerror", "wrong email")
         else:
-            print('1')
             ListOfSymbols = ['!','@','#','$','%','^','&','*','(',')','_','+','=','-']
             UpCase, LwCase, SpSymbol = None, None, None
             if len(Password_Entry_var) >= 10:
@@ -39,15 +38,12 @@ def get_entry_create():
                         LwCase = True
                     if Password_Entry_var[x] in ListOfSymbols:
                         SpSymbol = True
-            print(UpCase, LwCase, SpSymbol)
-            print('2')
             if LwCase == True and UpCase == True and SpSymbol == True:
                 Answer = insert_data(SurName_Entry_var, Phone_Entry_var, Email_Entry_var, Password_Entry_var)
                 if Answer == True:
                     clean_entry_create()
                     show_frame(frame_start)
                     tk.messagebox.showinfo("Conformation", "Account has been created")
-            print('3')
 def show_frame(frame):
     frame.tkraise()
 def get_entry_logIn():
