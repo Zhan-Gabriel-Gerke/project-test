@@ -2,6 +2,7 @@
 import sqlite3
 import tkinter as tk
 from tkinter import messagebox
+#db_file = ['AppData/data.db']
 def opendb():
     global curs, conn
     conn = sqlite3.connect(r'C:\Users\zange\source\repos\Zhan-Gabriel-Gerke\project-test\FinalWork\AppData\data.db')
