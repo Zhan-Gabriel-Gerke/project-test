@@ -1,4 +1,4 @@
-﻿import tkinter as tk
+import tkinter as tk
 from tkinter import W, E, N, S, messagebox
 from PIL import Image, ImageTk
 from dbquery import *
