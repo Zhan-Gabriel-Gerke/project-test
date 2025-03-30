@@ -28,9 +28,10 @@ def get_entry_create():
         if check_email(Email_Entry_var) == False:
             tk.messagebox.showerror("showerror", "wrong email")
         else:
+            print('1')
             ListOfSymbols = ['!','@','#','$','%','^','&','*','(',')','_','+','=','-']
+            UpCase, LwCase, SpSymbol = None, None, None
             if len(Password_Entry_var) > 10:
-                UpCase, LwCase, SpSymbol = None, None, None
                 for x in range(len(Password_Entry_var)):
                     if Password_Entry_var[x].isupper():
                         UpCase = True
@@ -38,12 +39,15 @@ def get_entry_create():
                         LwCase = True
                     if Password_Entry_var[x] in ListOfSymbols:
                         SpSymbol = True
+            print(UpCase, LwCase, SpSymbol)
+            print('2')
             if LwCase == True and UpCase == True and SpSymbol == True:
                 Answer = insert_data(SurName_Entry_var, Phone_Entry_var, Email_Entry_var, Password_Entry_var)
                 if Answer == True:
                     clean_entry_create()
                     show_frame(frame_start)
                     tk.messagebox.showinfo("Conformation", "Account has been created")
+            print('3')
 def show_frame(frame):
     frame.tkraise()
 def get_entry_logIn():
@@ -182,11 +186,15 @@ def randomPassword():
     Numbers = ['1','2','3','4','5','6','7','8','9','0']
     Symbols = ['!','@','#','$','%','^','&','*','(',')','_','+','=','-']
     password = '.'
-    for x in range(10):
+    for x in range(12):
         from1to3 = random.randint(1,3)
         if from1to3 == 1:
             random_var = random.randint(1, len(Alphabet)-1)
             var = Alphabet[random_var]
+            print(random_var)
+            if random_var % 2 == 0:
+                var = var.upper()
+                print('fiewfoiwejfioewjkflew')
             password = password + var
         elif from1to3 ==2:
             random_var = random.randint(1, len(Numbers)-1)
