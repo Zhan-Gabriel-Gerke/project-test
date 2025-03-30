@@ -1,8 +1,8 @@
 import tkinter as tk
 from tkinter import W, E, N, S, messagebox
-from token import COMMA
 from PIL import Image, ImageTk
 from dbquery import *
+import random
 def clean_entry_create():
     UserName_Entry.delete(0, tk.END)
     Phone_Entry.delete(0, tk.END)
@@ -177,11 +177,38 @@ def create_account_crate_frame():
             tk.messagebox.showinfo('Info', 'Account has been created')
         else:
             tk.messagebox.showerror('Error', "Account hasn't been created")
+def randomPassword():
+    Alphabet = ['q','w','e','r','t','y','u','i','o','p','a','s','d','f','g','h','j','k','l','z','x','c','v','b','n','m']
+    Numbers = ['1','2','3','4','5','6','7','8','9','0']
+    Symbols = ['!','@','#','$','%','^','&','*','(',')','_','+','=','-']
+    password = '.'
+    for x in range(10):
+        from1to3 = random.randint(1,3)
+        if from1to3 == 1:
+            random_var = random.randint(1, len(Alphabet)-1)
+            var = Alphabet[random_var]
+            password = password + var
+        elif from1to3 ==2:
+            random_var = random.randint(1, len(Numbers)-1)
+            var = Numbers[random_var]
+            password = password + str(var)
+        elif from1to3 ==3:
+            random_var = random.randint(1, len(Symbols)-1)
+            var = Symbols[random_var]
+            password = password + var
+    password = password[1:]
+    Password_Entry.insert(0, password)
+    Password_retype_Entry.insert(0, password)
+def back_from_create():
+    show_frame(frame_start)
+    Password_Entry.delete(0, tk.END)
+    Password_retype_Entry.delete(0, tk.END)
 def WindowsTK():
     global UserName_Entry, Phone_Entry, Email_Entry, Password_Entry, Password_retype_Entry, frame_start, frame_data, frame_edit_data
     global UserName_LogIn_Entry, Password_LogIn_Entry
     global listbox, label, UserName_Data_Lable_DATA, PSWD_Data_Lable_DATA, Link_Lable_DATA, Notes_Lable_DATA
     global UserName_Create_Entry, PSWD_Create_Entry, Link_Create_Entry, Notes_Create_Entry, Edit_data_Button
+    global Password_Entry, Password_retype_Entry
     #create root window
     window = tk.Tk()
     window.geometry('800x600')
@@ -230,7 +257,7 @@ def WindowsTK():
     Button_back_login = tk.Button(frame_log_in, text='Back', font=('Arial', 15, 'bold'), bg='gray', command=lambda: show_frame(frame_start))
     Button_back_login.place(x=700, y=550)
     #frame_create
-    Button_back_login = tk.Button(frame_create, text='Back', font=('Arial', 15, 'bold'), bg='gray', command=lambda: show_frame(frame_start))
+    Button_back_login = tk.Button(frame_create, text='Back', font=('Arial', 15, 'bold'), bg='gray', command=back_from_create)
     Button_back_login.place(x=700, y=550)
     Username_Lable = tk.Label(frame_create, text='Username', font=('Arial', 15, 'bold'), bg='gray')
     Username_Lable.place(x=100, y=230)
@@ -258,7 +285,9 @@ def WindowsTK():
               Symbols : (!@#$%^&*()_+=-)""")
     Password_requirements_Label.place(x=100, y=400)
     Create_button = tk.Button(frame_create, bg='lightgray', text='Create', font=('Arial', 15, 'bold'), command=get_entry_create)
-    Create_button.place(x=300, y=500)
+    Create_button.place(x=200, y=500)
+    Random_Password_Button = tk.Button(frame_create, bg='lightgray', text='Random Password', font=('Arial', 15, 'bold'), command=randomPassword)
+    Random_Password_Button.place(x=350, y=500)
     #frame_log_in
     UserName_LogIn_Label = tk.Label(frame_log_in, bg='gray', text='UserName', font=('Arial', 15, 'bold'))
     UserName_LogIn_Label.place(x=100, y=200)
