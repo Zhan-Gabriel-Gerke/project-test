@@ -3,6 +3,10 @@ from tkinter import W, E, N, S, messagebox
 from PIL import Image, ImageTk
 from dbquery import *
 import random
+# Путь к папке, где находится скрипт
+script_dir = os.path.dirname(os.path.abspath(__file__))
+# Формируем путь к файлу
+file_path = os.path.join(script_dir, "background.jpg")
 def clean_entry_create():
     UserName_Entry.delete(0, tk.END)
     Phone_Entry.delete(0, tk.END)
@@ -219,7 +223,7 @@ def WindowsTK():
     window.resizable(False, False)
     window.title('PassSaver')
     #background
-    original_image = Image.open(r"C:\Users\zange\source\repos\Zhan-Gabriel-Gerke\project-test\FinalWork\background.jpg")
+    original_image = Image.open(file_path)
     resized_image = original_image.resize((800, 600))
     bgimage = ImageTk.PhotoImage(resized_image)
     #create Frames

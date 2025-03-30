@@ -2,10 +2,14 @@ from math import e
 import sqlite3
 import tkinter as tk
 from tkinter import messagebox
-#db_file = ['AppData/data.db']
+import os
+# Путь к папке, где находится скрипт
+script_dir = os.path.dirname(os.path.abspath(__file__))
+# Формируем путь к файлу
+file_path = os.path.join(script_dir, "AppData", "data.db")
 def opendb():
     global curs, conn
-    conn = sqlite3.connect(r'C:\Users\zange\source\repos\Zhan-Gabriel-Gerke\project-test\FinalWork\AppData\data.db')
+    conn = sqlite3.connect(file_path)
     curs = conn.cursor()
 def create_custom_table(Username):
     opendb()
