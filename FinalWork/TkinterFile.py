@@ -86,7 +86,6 @@ def change_data_activator():
     Password = Password_edit_Entry.get()
     Notes = Notes_edit_Entry.get()
     Link = Link_edit_Entry.get()
-    #change_data(current_user, current_data[1], current_data[2], current_data[3], current_data[4], current_data[0])
     change_data(current_user, Username, Password, Link, Notes, ID)
     tk.messagebox.showinfo('Info', 'Data has been updated')
     back_to_frame_data()
