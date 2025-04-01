@@ -1,6 +1,5 @@
 from dbquery import *
 from TkinterFile import *
-import random
 def del_record(current_user,ID):
     opendb()
     try:
@@ -10,3 +9,4 @@ def del_record(current_user,ID):
         return True
     except sqlite3.Error as e:
         tk.messagebox.showerror("showerror def del_record", e)
+del_record('Test13', 8)

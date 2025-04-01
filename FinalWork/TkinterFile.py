@@ -122,8 +122,10 @@ def edit_active():
         tk.messagebox.showerror('Error', "You haven't chosen a record")
     #change_data(current_user, UserNameOrEmail, Password, Link, Notes, ID)
 def creare_frame_data(data):
-    global Edit_data_Button, current_data
+    global current_data#Edit_data_Button
+    print(data)
     data = data[0]
+    print(data)
     UserName_Data_Lable_DATA.config(text=data[1])
     PSWD_Data_Lable_DATA.config(text=data[2])
     Link_Lable_DATA.config(text=data[3])
@@ -137,7 +139,7 @@ def double_click(event):
         temp_var = selected_index.split(';')
         for x in range(len(UserName_list)):
             if temp_var[0] == UserName_list[x]:
-                User_ID = x + 1
+                User_ID = x + 1 
                 data = select_data_by_id(current_user, User_ID)
                 creare_frame_data(data)
         # else:
@@ -210,6 +212,13 @@ def back_from_create():
     show_frame(frame_start)
     Password_Entry.delete(0, tk.END)
     Password_retype_Entry.delete(0, tk.END)
+def delete_by_id():
+    ID = current_data[0]
+    YorN = del_record(current_user,ID)
+    if YorN == True:
+        listbox_def()
+    else:
+        print('AAA')
 def WindowsTK():
     global UserName_Entry, Phone_Entry, Email_Entry, Password_Entry, Password_retype_Entry, frame_start, frame_data, frame_edit_data
     global UserName_LogIn_Entry, Password_LogIn_Entry
@@ -327,8 +336,10 @@ def WindowsTK():
     LogOut_Button.place(x=680, y=530)
     Add_Account = tk.Button(frame_data, bg='gray', font=('Arial', 15, 'bold'), text='Add Account', command=lambda: show_frame(frame_add_account))
     Add_Account.place(x=400, y=530)
-    Edit_data_Button = tk.Button(frame_data,text='Edit', font=('Arial', 15, 'bold'), bg='gray', command=edit_active)
+    Edit_data_Button = tk.Button(frame_data, text='Edit', font=('Arial', 15, 'bold'), bg='gray', command=edit_active)
     Edit_data_Button.place(x=350, y=400)
+    Delete_data_Button = tk.Button(frame_data, text='Delete', font=('Arial', 15, 'bold'), bg='gray', command=delete_by_id)
+    Delete_data_Button.place(x=450, y=400)
     #Frame Add Account
     Banner_Create_Label = tk.Label(frame_add_account, bg='gray', font=('Arial', 15, 'bold'), text='Enter data')
     Banner_Create_Label.place(x=350, y=50)
